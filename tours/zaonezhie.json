@@ -2,7 +2,7 @@
   "slug": "zaonezhie",
   "meta": {
     "title": "Заонежье на Cayenne — зимний автотур по Карелии, декабрь 2026",
-    "description": "4 дня за рулём Cayenne по зимней Карелии: Кивач, Онежские шхеры, Кижи. Три заезда 7–20 декабря, шесть машин в заезде. 785 000 ₽ за экипаж из двоих."
+    "description": "4 дня за рулём Cayenne по зимней Карелии: Кивач, Онежские шхеры, Кижи. Три заезда 7–20 декабря, шесть машин в заезде."
   },
   "name": "Заонежье",
   "eyebrow": "Зимний автотур · Карелия · декабрь 2026",
@@ -14,11 +14,32 @@
   "crewSize": 2,
   "crewsPerDeparture": 6,
   "price": 785000,
-  "heroImage": "https://static.tildacdn.com/tild3436-3064-4563-b639-646336396334/_IMG_7181.jpeg",
+  "heroImage": "assets/zaonezhie/7036.jpg",
   "departures": [
-    { "id": "d1", "from": "2026-12-07", "to": "2026-12-10", "label": "7–10 декабря", "status": "open", "left": null },
-    { "id": "d2", "from": "2026-12-12", "to": "2026-12-15", "label": "12–15 декабря", "status": "open", "left": null },
-    { "id": "d3", "from": "2026-12-17", "to": "2026-12-20", "label": "17–20 декабря", "status": "open", "left": null }
+    {
+      "id": "d1",
+      "from": "2026-12-07",
+      "to": "2026-12-10",
+      "label": "7–10 декабря",
+      "status": "open",
+      "left": null
+    },
+    {
+      "id": "d2",
+      "from": "2026-12-12",
+      "to": "2026-12-15",
+      "label": "12–15 декабря",
+      "status": "open",
+      "left": null
+    },
+    {
+      "id": "d3",
+      "from": "2026-12-17",
+      "to": "2026-12-20",
+      "label": "17–20 декабря",
+      "status": "open",
+      "left": null
+    }
   ],
   "included": [
     "2 дня за рулём Cayenne, два участника в машине",
@@ -44,7 +65,11 @@
         "Заселение в резиденцию «Шуйская Чупа»",
         "Брифинг по безопасности и знакомство с машинами",
         "Ужин в резиденции"
-      ]
+      ],
+      "photo": {
+        "src": "assets/zaonezhie/7410.jpg",
+        "alt": "Камин в резиденции"
+      }
     },
     {
       "day": 2,
@@ -56,7 +81,11 @@
         "Snow experience: дорога через заснеженный карельский лес",
         "Варим уху лохикейто с карельской хозяйкой Насто",
         "Заселение в Karelia Family Club, ужин в карельском стиле"
-      ]
+      ],
+      "photo": {
+        "src": "assets/zaonezhie/7181.jpg",
+        "alt": "Незамерзающий водопад Кивач"
+      }
     },
     {
       "day": 3,
@@ -68,7 +97,11 @@
         "На остров Кижи на судне на воздушной подушке",
         "Весь остров с местным экспертом",
         "Баня и ужин"
-      ]
+      ],
+      "photo": {
+        "src": "assets/zaonezhie/0412.jpg",
+        "alt": "Деревянные церкви Кижей зимой"
+      }
     },
     {
       "day": 4,
@@ -82,10 +115,10 @@
     }
   ],
   "gallery": [
-    "https://static.tildacdn.com/tild3038-3332-4139-b361-626131613331/IMG_7036_.jpg",
-    "https://static.tildacdn.com/tild3138-3763-4132-b739-626161313263/_IMG_7366.jpeg",
-    "https://static.tildacdn.com/tild3230-3564-4963-b638-353562653763/_IMG_7184.jpeg",
-    "https://static.tildacdn.com/tild3036-3435-4764-b038-616433666665/_IMG_7410.jpeg"
+    "assets/zaonezhie/0216.jpg",
+    "assets/zaonezhie/0286.jpg",
+    "assets/zaonezhie/7184.jpg"
   ],
-  "reviews": []
+  "reviews": [],
+  "showPrice": false
 }

@@ -48,11 +48,8 @@ export function render(tour, cfg) {
 <meta name="description" content="${esc(tour.meta.description)}">
 <meta property="og:title" content="${esc(tour.meta.title)}">
 <meta property="og:description" content="${esc(tour.meta.description)}">
-<meta property="og:image" content="${esc(tour.heroImage)}">
+<meta property="og:image" content="../${esc(tour.heroImage)}">
 <meta name="theme-color" content="#0D1317">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
@@ -65,7 +62,7 @@ export function render(tour, cfg) {
   <a class="topbar__phone" href="${esc(cfg.phoneHref)}" data-goal="phone">${esc(cfg.phone)}</a>
 </header>
 
-<section class="hero" style="--hero-img:url('${esc(tour.heroImage)}')">
+<section class="hero" style="--hero-img:url('../${esc(tour.heroImage)}')">
   <div class="hero__shade" aria-hidden="true"></div>
   <p class="hero__word" aria-hidden="true">${esc(tour.name)}</p>
   <div class="wrap hero__body">
@@ -73,7 +70,9 @@ export function render(tour, cfg) {
     <h1 class="hero__title">${esc(tour.headline)}</h1>
     <p class="hero__lead">${esc(tour.lead)}</p>
     <dl class="hero__facts">
-      <div><dt>Экипаж из двоих</dt><dd>${rub(tour.price)}</dd></div>
+      ${tour.showPrice
+        ? `<div><dt>Экипаж из двоих</dt><dd class="hero__big">${rub(tour.price)}</dd></div>`
+        : `<div><dt>В заезде</dt><dd class="hero__big">${tour.crewsPerDeparture} машин</dd></div>`}
       <div><dt>Заезды</dt><dd>${tour.departures.map((d) => esc(d.label)).join('<br>')}</dd></div>
     </dl>
     <div class="hero__cta">
@@ -105,8 +104,11 @@ export function render(tour, cfg) {
   <div class="wrap price">
     <div class="price__head">
       <p class="eyebrow">Что входит в стоимость</p>
+      ${tour.showPrice ? `
       <h2 class="h2" id="price-h"><span class="price__sum">${rub(tour.price)}</span> за машину и двоих, всё включено</h2>
-      <p class="price__per">Это около <strong>${rub(perPersonDay)}</strong> на человека в день: машина, отели, вся еда, экскурсии, баня, страховка и команда сопровождения.</p>
+      <p class="price__per">Это около <strong>${rub(perPersonDay)}</strong> на человека в день: машина, отели, вся еда, экскурсии, баня, страховка и команда сопровождения.</p>` : `
+      <h2 class="h2" id="price-h">Всё включено — от трансфера до бани</h2>
+      <p class="price__per">Вы покупаете только билеты до Петрозаводска. Машина, отели, еда, экскурсии и команда сопровождения уже в программе. Стоимость пришлём вместе с ней.</p>`}
     </div>
     <ul class="price__list">
       ${tour.included.map((i) => `<li>${esc(i)}</li>`).join('')}
@@ -129,19 +131,20 @@ export function render(tour, cfg) {
         <h3 class="road__title">${esc(d.title)}</h3>
         <p class="road__route">${esc(d.route)}</p>
         <ul class="road__items">${d.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+        ${d.photo ? `<figure class="road__photo"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}" loading="lazy" decoding="async"></figure>` : ''}
       </div>
     </li>`).join('')}
     <li class="road__day road__day--finish">
       <span class="road__node" aria-hidden="true"></span>
       <div class="wrap">
         <p class="road__odo">${tour.km}<span>км</span></p>
-        <a class="btn btn--ink" href="#lead" data-goal="cta_program">Получить программу с отелями и меню</a>
+        <a class="btn btn--ink" href="#lead" data-goal="cta_program">${tour.showPrice ? 'Получить программу с отелями и меню' : 'Узнать стоимость и получить программу'}</a>
       </div>
     </li>
   </ol>
   ${tour.gallery.length ? `
-  <div class="gallery" aria-label="Фото с прошлых заездов">
-    ${tour.gallery.map((src) => `<figure><img src="${esc(src)}" alt="" loading="lazy" decoding="async"></figure>`).join('')}
+  <div class="gallery" style="--n:${tour.gallery.length}" aria-label="Фото с прошлых заездов">
+    ${tour.gallery.map((src) => `<figure><img src="../${esc(src)}" alt="" loading="lazy" decoding="async"></figure>`).join('')}
   </div>` : ''}
 </section>
 
@@ -183,7 +186,7 @@ ${tour.reviews.length ? `
 <section class="sec sec--signal" id="lead" aria-labelledby="lead-h">
   <div class="wrap lead">
     <div class="lead__intro">
-      <h2 class="h2" id="lead-h">Пришлём полную программу с отелями и меню</h2>
+      <h2 class="h2" id="lead-h">${tour.showPrice ? 'Пришлём полную программу с отелями и меню' : 'Пришлём программу и стоимость'}</h2>
       <p>Три вопроса — и ${esc(cfg.manager)} подготовит программу под ваш заезд.</p>
     </div>
 
@@ -227,6 +230,7 @@ ${tour.reviews.length ? `
 
       <div class="quiz__nav">
         <button class="quiz__back" type="button" hidden>← Назад</button>
+        <button class="quiz__next" type="button" disabled>Дальше →</button>
       </div>
     </form>
   </div>
@@ -237,7 +241,7 @@ ${tour.reviews.length ? `
     <h2 class="h2" id="faq-h">Частые вопросы</h2>
     <div class="faq">
       <details><summary>Что не входит в стоимость?</summary><p>${esc(tour.notIncluded)}. Встречаем и провожаем в аэропорту Петрозаводска — трансфер включён.</p></details>
-      <details><summary>Можно поехать одному или втроём?</summary><p>Цена рассчитана на машину и двух участников. Для другого состава ${esc(cfg.manager)} посчитает стоимость отдельно.</p></details>
+      <details><summary>Можно поехать одному или втроём?</summary><p>Программа рассчитана на машину с двумя участниками. Для другого состава ${esc(cfg.manager)} подберёт вариант.</p></details>
       <details><summary>Нужен ли опыт езды по снегу?</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
       <details><summary>Как бронировать и платить?</summary><p>Заключаем договор с туроператором из федерального реестра (${esc(cfg.registry)}). Условия оплаты и отмены прописаны в договоре — пришлём его вместе с программой.</p></details>
       <details><summary>Можно забронировать весь заезд для своей компании?</summary><p>Да. Выберите «Группа от компании» в форме выше или позвоните: ${esc(cfg.phone)}.</p></details>

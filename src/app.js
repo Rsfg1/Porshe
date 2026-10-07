@@ -16,6 +16,7 @@
     var steps = Array.prototype.slice.call(form.querySelectorAll('.quiz__step'));
     var label = form.querySelector('[data-step-label]');
     var back = form.querySelector('.quiz__back');
+    var next = form.querySelector('.quiz__next');
     var errorBox = form.querySelector('.quiz__error');
     var done = form.querySelector('.quiz__done');
     var current = 0;
@@ -25,15 +26,27 @@
       steps.forEach(function (s, k) { s.hidden = k !== i; });
       label.textContent = 'Вопрос ' + (i + 1) + ' из ' + steps.length;
       back.hidden = i === 0;
+      next.hidden = i === steps.length - 1;
+      syncNext();
       goal('quiz_step_' + (i + 1));
     };
+    var syncNext = function () {
+      next.disabled = !steps[current].querySelector('input[type=radio]:checked');
+    };
 
-    // radio answers in steps 1–2 advance automatically
-    form.addEventListener('change', function (e) {
+    // a radio answer in steps 1–2 advances automatically; "Дальше" is the manual fallback
+    var advanceTimer;
+    var onPick = function (e) {
       var t = e.target;
       if (t.type !== 'radio' || t.name === 'channel') return;
-      if (current < steps.length - 1) setTimeout(function () { show(current + 1); }, 180);
-    });
+      syncNext();
+      clearTimeout(advanceTimer);
+      var from = current;
+      advanceTimer = setTimeout(function () { if (current === from && current < steps.length - 1) show(current + 1); }, 220);
+    };
+    form.addEventListener('change', onPick);
+    form.addEventListener('input', onPick);
+    next.addEventListener('click', function () { if (!next.disabled && current < steps.length - 1) show(current + 1); });
 
     back.addEventListener('click', function () { if (current > 0) show(current - 1); });
 
@@ -76,6 +89,7 @@
         steps.forEach(function (s) { s.hidden = true; });
         label.parentNode.hidden = true;
         back.hidden = true;
+        next.hidden = true;
         done.hidden = false;
         done.focus();
         goal('lead', { departure: payload.departure, crew: payload.crew });
