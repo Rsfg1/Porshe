@@ -14,7 +14,7 @@
   "crewSize": 2,
   "crewsPerDeparture": 6,
   "price": 785000,
-  "heroImage": "assets/zaonezhie/7036.jpg",
+  "heroImage": "assets/zaonezhie/hero-car.jpg",
   "departures": [
     {
       "id": "d1",
@@ -65,11 +65,7 @@
         "Заселение в резиденцию «Шуйская Чупа»",
         "Брифинг по безопасности и знакомство с машинами",
         "Ужин в резиденции"
-      ],
-      "photo": {
-        "src": "assets/zaonezhie/0286.jpg",
-        "alt": "Машины у резиденции, вид из окна"
-      }
+      ]
     },
     {
       "day": 2,
@@ -83,8 +79,8 @@
         "Заселение в Karelia Family Club, ужин в карельском стиле"
       ],
       "photo": {
-        "src": "assets/zaonezhie/7181.jpg",
-        "alt": "Незамерзающий водопад Кивач"
+        "src": "assets/zaonezhie/kivach.jpg",
+        "alt": "Водопад Кивач зимой"
       }
     },
     {
@@ -99,8 +95,8 @@
         "Баня и ужин"
       ],
       "photo": {
-        "src": "assets/zaonezhie/0412.jpg",
-        "alt": "Деревянные церкви Кижей зимой"
+        "src": "assets/zaonezhie/kizhi.jpg",
+        "alt": "Деревянные церкви Кижей"
       }
     },
     {
@@ -116,5 +112,9 @@
   ],
   "gallery": [],
   "reviews": [],
-  "showPrice": false
+  "showPrice": false,
+  "roadImage": {
+    "src": "assets/zaonezhie/road.jpg",
+    "alt": "Машина на заснеженной лесной дороге"
+  }
 }
