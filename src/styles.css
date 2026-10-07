@@ -547,9 +547,12 @@ ul, ol { padding: 0; list-style: none; }
   .g-lead { font-size: 19px; }
 }
 
-/* Glacier: no top bar; on phones the buttons come right under the card */
+/* Glacier: no top bar. On phones the buttons live in the dock pinned to the bottom
+   of the screen from the first moment, so the hero itself carries no buttons. */
 .theme-glacier .topbar { display: none; }
 .theme-glacier .g-hero { padding-top: 16px; }
-@media (max-width: 899px) {
-  .g-body .hero__cta { order: -1; }
+.theme-glacier .dock { background: rgba(10, 20, 23, .92); border-top: 1px solid var(--line); }
+@media (max-width: 759px) {
+  .theme-glacier .g-body .hero__cta { display: none; }
+  .theme-glacier .footer { padding-bottom: 120px; }
 }
