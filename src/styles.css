@@ -546,3 +546,10 @@ ul, ol { padding: 0; list-style: none; }
   .g-body { order: 1; padding: 0 0 8px; min-width: 0; gap: 32px; }
   .g-lead { font-size: 19px; }
 }
+
+/* Glacier: no top bar; on phones the buttons come right under the card */
+.theme-glacier .topbar { display: none; }
+.theme-glacier .g-hero { padding-top: 16px; }
+@media (max-width: 899px) {
+  .g-body .hero__cta { order: -1; }
+}
