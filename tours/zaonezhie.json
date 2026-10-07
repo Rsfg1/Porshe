@@ -67,8 +67,8 @@
         "Ужин в резиденции"
       ],
       "photo": {
-        "src": "assets/zaonezhie/7410.jpg",
-        "alt": "Камин в резиденции"
+        "src": "assets/zaonezhie/0286.jpg",
+        "alt": "Машины у резиденции, вид из окна"
       }
     },
     {
@@ -114,11 +114,7 @@
       ]
     }
   ],
-  "gallery": [
-    "assets/zaonezhie/0216.jpg",
-    "assets/zaonezhie/0286.jpg",
-    "assets/zaonezhie/7184.jpg"
-  ],
+  "gallery": [],
   "reviews": [],
   "showPrice": false
 }
