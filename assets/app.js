@@ -110,12 +110,14 @@
 
   // ---- Mobile dock: visible after the hero, hidden while the form is on screen ----
   var dock = document.querySelector('.dock');
-  var hero = document.querySelector('.hero');
+  var hero = document.querySelector('.hero, .g-hero');
   var lead = document.getElementById('lead');
   if (dock && hero && lead && 'IntersectionObserver' in window) {
-    var heroOut = false, leadIn = false;
+    var pinned = document.body.classList.contains('theme-glacier');
+    var heroOut = pinned, leadIn = false;
     var sync = function () { dock.classList.toggle('is-on', heroOut && !leadIn); };
-    new IntersectionObserver(function (en) { heroOut = !en[0].isIntersecting; sync(); }).observe(hero);
+    if (!pinned) new IntersectionObserver(function (en) { heroOut = !en[0].isIntersecting; sync(); }).observe(hero);
+    sync();
     new IntersectionObserver(function (en) { leadIn = en[0].isIntersecting; sync(); }).observe(lead);
   }
 })();
