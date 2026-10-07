@@ -1,0 +1,9 @@
+{
+  "name": "drive-travel-landings",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node build.mjs && python3 -m http.server 8080 --directory dist"
+  }
+}
