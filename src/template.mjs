@@ -52,7 +52,7 @@ export function render(tour, cfg) {
 <meta name="theme-color" content="#0D1317">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
-<body>
+<body class="theme-${esc(tour.theme || 'poster')}">
 <a class="skip" href="#lead">К заявке</a>
 
 <div class="page">
@@ -62,7 +62,33 @@ export function render(tour, cfg) {
   <a class="topbar__phone" href="${esc(cfg.phoneHref)}" data-goal="phone">${esc(cfg.phone)}</a>
 </header>
 
-<section class="hero" style="--hero-img:url('../${esc(tour.heroImage)}')">
+${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
+  <div class="g-wrap">
+  <div class="g-frame">
+    <div class="g-card">
+      <div class="g-stage"><img class="g-photo" src="../${esc(tour.heroImage)}" alt="" decoding="async"><p class="g-word" aria-hidden="true">${esc(tour.name)}</p></div>
+      <span class="g-corner g-corner--tl"></span><span class="g-corner g-corner--tr"></span><span class="g-corner g-corner--bl"></span><span class="g-corner g-corner--br"></span>
+    </div>
+    ${tour.heroCutout ? `<div class="g-cutwrap" aria-hidden="true"><div class="g-stage g-stage--cut"><img src="../${esc(tour.heroCutout)}" alt="" decoding="async"></div></div>` : ''}
+  </div>
+  <div class="g-body">
+      <p class="eyebrow">${esc(tour.eyebrow)}</p>
+      <h1 class="g-title" id="g-title">${esc(tour.headline)}</h1>
+      <p class="g-lead">${esc(tour.lead)}</p>
+      <div class="hero__cta">
+        <a class="btn btn--signal" href="#lead" data-goal="cta_hero">Получить программу</a>
+        ${messengerLinks(cfg, 'btn btn--ghost')}
+      </div>
+      <dl class="g-facts">
+        ${tour.showPrice
+          ? `<div><dt>Экипаж из двоих</dt><dd>${rub(tour.price)}</dd></div>`
+          : `<div><dt>В заезде</dt><dd>${tour.crewsPerDeparture} машин</dd></div>`}
+        <div><dt>Маршрут</dt><dd>${tour.days} дней · ${tour.km} км</dd></div>
+        <div><dt>Заезды</dt><dd>${tour.departures.map((d) => esc(d.label)).join(' · ')}</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>` : `<section class="hero" style="--hero-img:url('../${esc(tour.heroImage)}')">
   <div class="hero__shade" aria-hidden="true"></div>
   <p class="hero__word" aria-hidden="true">${esc(tour.name)}</p>
   <div class="wrap hero__body">
@@ -80,7 +106,7 @@ export function render(tour, cfg) {
       ${messengerLinks(cfg, 'btn btn--ghost')}
     </div>
   </div>
-</section>
+</section>`}
 
 <main>
 
@@ -92,7 +118,7 @@ export function render(tour, cfg) {
       ${tour.departures.map((d) => `
       <li class="ticket ticket--${esc(d.status)}">
         <p class="ticket__date">${esc(d.label)}</p>
-        <p class="ticket__meta">${tour.days} дня · ${tour.km} км · ${esc(tour.car)}</p>
+        <p class="ticket__meta">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')} · ${tour.km} км · ${esc(tour.car)}</p>
         <p class="ticket__status">${esc(statusLabel(d))}</p>
         <a class="btn btn--ink" href="#lead" data-departure="${esc(d.id)}" data-goal="cta_departure">${d.status === 'full' ? 'В лист ожидания' : 'Забронировать место'}</a>
       </li>`).join('')}
@@ -108,7 +134,7 @@ export function render(tour, cfg) {
       <h2 class="h2" id="price-h"><span class="price__sum">${rub(tour.price)}</span> за машину и двоих, всё включено</h2>
       <p class="price__per">Это около <strong>${rub(perPersonDay)}</strong> на человека в день: машина, отели, вся еда, экскурсии, баня, страховка и команда сопровождения.</p>` : `
       <h2 class="h2" id="price-h">Всё включено — от трансфера до бани</h2>
-      <p class="price__per">Вы покупаете только билеты до Петрозаводска. Машина, отели, еда, экскурсии и команда сопровождения уже в программе. Стоимость пришлём вместе с ней.</p>`}
+      <p class="price__per">Вы покупаете только билеты до ${esc(tour.airportCity)}. Машина, отели, еда, экскурсии и команда сопровождения уже в программе. Стоимость пришлём вместе с ней.</p>`}
     </div>
     <ul class="price__list">
       ${tour.included.map((i) => `<li>${esc(i)}</li>`).join('')}
@@ -120,7 +146,7 @@ export function render(tour, cfg) {
 <section class="sec sec--snow roadbook" aria-labelledby="road-h">
   <div class="wrap">
     <p class="eyebrow">Программа</p>
-    <h2 class="h2" id="road-h">${tour.days} дня, ${tour.km} км</h2>
+    <h2 class="h2" id="road-h">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}, ${tour.km} км</h2>
   </div>
   ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}" loading="lazy" decoding="async"></figure>` : ''}
   <ol class="road">
@@ -154,10 +180,7 @@ export function render(tour, cfg) {
     <p class="eyebrow">Почему это стоит своих денег</p>
     <h2 class="h2" id="why-h">Что будет, если…</h2>
     <dl class="whatif">
-      <div><dt>…начнётся метель или закроют дорогу</dt><dd>На каждый день у нас готов план Б и план В: другой маршрут, другая точка, тот же уровень. Поездка не срывается.</dd></div>
-      <div><dt>…машина откажет посреди леса</dt><dd>За колонной идёт техподдержка. Обычно машина снова в пути через 15–30 минут.</dd></div>
-      <div><dt>…вы никогда не ездили по зимней Карелии</dt><dd>В первый вечер — брифинг по безопасности. Маршрут проложен и проверен командой заранее, вы просто едете.</dd></div>
-      <div><dt>…захочется настоящей карельской еды, а вокруг только лес</dt><dd>Кормим трижды в день местной кухней, включая уху лохикейто, которую вы сварите сами.</dd></div>
+      ${tour.whatif.map((w) => `<div><dt>${esc(w.q)}</dt><dd>${esc(w.a)}</dd></div>`).join('')}
     </dl>
     <p class="why__note">${tour.crewsPerDeparture} машин в заезде — это ${seats} человек. Команда успевает заметить каждого.</p>
   </div>
@@ -241,7 +264,7 @@ ${tour.reviews.length ? `
   <div class="wrap">
     <h2 class="h2" id="faq-h">Частые вопросы</h2>
     <div class="faq">
-      <details><summary>Что не входит в стоимость?</summary><p>${esc(tour.notIncluded)}. Встречаем и провожаем в аэропорту Петрозаводска — трансфер включён.</p></details>
+      <details><summary>Что не входит в стоимость?</summary><p>${esc(tour.notIncluded)}. Встречаем и провожаем в аэропорту ${esc(tour.airportCity)} — трансфер включён.</p></details>
       <details><summary>Можно поехать одному или втроём?</summary><p>Программа рассчитана на машину с двумя участниками. Для другого состава ${esc(cfg.manager)} подберёт вариант.</p></details>
       <details><summary>Нужен ли опыт езды по снегу?</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
       <details><summary>Как бронировать и платить?</summary><p>Заключаем договор с туроператором из федерального реестра (${esc(cfg.registry)}). Условия оплаты и отмены прописаны в договоре — пришлём его вместе с программой.</p></details>
