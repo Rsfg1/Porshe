@@ -1,0 +1,3 @@
+# SourceCraft Sites: publish the built site from the "site" branch
+site:
+  ref: "site"
