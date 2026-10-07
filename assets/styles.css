@@ -20,7 +20,7 @@
 @font-face {
   font-family: 'Onest';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 600;
   font-display: swap;
   src: url(fonts/Onest-cyrillic.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
@@ -29,7 +29,7 @@
 @font-face {
   font-family: 'Onest';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 600;
   font-display: swap;
   src: url(fonts/Onest-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -38,7 +38,7 @@
 @font-face {
   font-family: 'Unbounded';
   font-style: normal;
-  font-weight: 500 800;
+  font-weight: 200 800;
   font-display: swap;
   src: url(fonts/Unbounded-cyrillic.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
@@ -47,7 +47,7 @@
 @font-face {
   font-family: 'Unbounded';
   font-style: normal;
-  font-weight: 500 800;
+  font-weight: 200 800;
   font-display: swap;
   src: url(fonts/Unbounded-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -421,4 +421,164 @@ ul, ol { padding: 0; list-style: none; }
   html { scroll-behavior: auto; }
   .page::before { animation: none; }
   .dock { transition: none; }
+}
+
+/* =====================================================================
+   Theme "glacier" — Baikal. Deep night-water ground, thin wide type,
+   viewfinder corners; the rock stands in front of the tour name.
+   ===================================================================== */
+.theme-glacier {
+  --night: #0A1417;
+  --night-2: #0F1D21;
+  --snow: #E4ECEC;
+  --ice: #8FB3B5;
+  --moss: #8FB3B5;
+  --ink: #0A1417;
+  --signal: #E4ECEC;
+  --signal-deep: #FFFFFF;
+  --glow: #5FD0C8;
+  --line: rgba(228, 236, 236, .16);
+  --stripe: 1px;
+  --stripe-gap: 0px;
+  --rail-w: 1px;
+}
+.theme-glacier .page::before { background: var(--line); }
+.theme-glacier .btn { border-radius: 2px; font-weight: 500; }
+.theme-glacier .btn--signal { background: var(--snow); color: var(--night); }
+.theme-glacier .btn--signal:hover { background: #fff; }
+.theme-glacier .btn--ghost { border-color: rgba(228, 236, 236, .4); }
+.theme-glacier .btn--ink { background: transparent; color: var(--snow); border-color: rgba(228, 236, 236, .4); }
+.theme-glacier .btn--ink:hover { background: var(--snow); color: var(--night); }
+.theme-glacier .h2 { font-weight: 300; letter-spacing: .01em; }
+.theme-glacier .eyebrow { color: var(--ice); }
+.theme-glacier :focus-visible { outline-color: var(--glow); }
+
+/* every section sits on night water; alternate only the depth */
+.theme-glacier .sec--snow { background: var(--night-2); color: var(--snow); }
+.theme-glacier .sec--snow .eyebrow { color: var(--ice); }
+.theme-glacier .sec--signal { background: var(--night-2); color: var(--snow); border-top: 1px solid var(--line); }
+.theme-glacier .sec--signal::before { display: none; }
+.theme-glacier .lead__intro p { color: var(--ice); }
+.theme-glacier .quiz { background: transparent; border: 1px solid var(--line); }
+.theme-glacier .opt input:checked + span { border-color: var(--glow); background: rgba(95, 208, 200, .1); }
+.theme-glacier .consent input { accent-color: var(--glow); }
+
+.theme-glacier .ticket { background: transparent; border: 1px solid var(--line); border-top: 1px solid var(--line); }
+.theme-glacier .ticket__date { font-weight: 300; }
+.theme-glacier .ticket__meta, .theme-glacier .ticket__status { color: var(--ice); }
+.theme-glacier .ticket__status { border-top-color: var(--line); }
+.theme-glacier .ticket--few { border-color: var(--glow); }
+.theme-glacier .ticket--few .ticket__status { color: var(--glow); }
+
+.theme-glacier .price__sum { color: var(--snow); font-weight: 300; }
+.theme-glacier .price__list li::before { background: var(--glow); width: 10px; height: 1px; }
+.theme-glacier .price__list li { border-bottom-color: var(--line); }
+
+.theme-glacier .road__node {
+  left: calc(var(--rail-x) - 7px); width: 15px; height: 15px; top: 8px;
+  border-radius: 50%; background: var(--night-2); border: 1px solid var(--snow);
+}
+.theme-glacier .road__day--finish .road__node { background: var(--glow); border-color: var(--glow); }
+.theme-glacier .road__title { font-weight: 300; }
+.theme-glacier .road__route, .theme-glacier .road__items li::before { color: var(--ice); }
+.theme-glacier .road__odo { font-weight: 200; }
+.theme-glacier .tag { background: transparent; color: var(--glow); border: 1px solid var(--glow); }
+.theme-glacier .road__photo {
+  -webkit-mask-image: none; mask-image: none;
+  width: auto; max-width: 860px; margin: 24px 0 0; border-radius: 12px; overflow: hidden;
+  aspect-ratio: 3 / 2; height: auto;
+}
+
+.theme-glacier .whatif > div { border-top-color: var(--line); }
+.theme-glacier .whatif dt { font-weight: 500; }
+.theme-glacier .whatif dd, .theme-glacier .why__note { color: var(--ice); }
+.theme-glacier .trust__facts li { border-top: 1px solid var(--line); }
+.theme-glacier .trust__facts strong { font-weight: 300; }
+.theme-glacier .trust__facts span, .theme-glacier .trust__press { color: var(--ice); }
+.theme-glacier .faq details { border-color: var(--line); }
+.theme-glacier .faq summary::after { color: var(--glow); }
+.theme-glacier .faq details p { color: var(--ice); }
+.theme-glacier .topbar { position: relative; padding-bottom: 8px; padding-right: var(--gutter); }
+@media (max-width: 759px) { .theme-glacier .topbar__phone { display: none; } }
+
+/* ---- Glacier hero ----
+   The stage is the photo at its own aspect ratio, sized to the card width, so the
+   tour name and the rock cutout can be placed in photo coordinates at any screen size.
+   --top: where the card's top edge sits on the photo (0–1); the rock peak above it
+   breaks out of the card. */
+.g-hero { position: relative; padding: 8px 0 clamp(48px, 7vw, 96px); }
+.g-frame {
+  --ratio: 2.2105;                 /* photo height / width (1344 / 608) */
+  --w: min(1180px, 100vw - 2 * var(--gutter));
+  --stage-h: calc(var(--w) * var(--ratio));
+  --top: .245;
+  --lift: calc(var(--stage-h) * (var(--top) - .2));   /* room above the card for the peak */
+  position: relative;
+  width: var(--w);
+  margin: 0 auto;
+  padding-top: var(--lift);
+}
+.g-card {
+  position: relative; z-index: 1;
+  height: clamp(520px, 74svh, 720px);
+  border-radius: 14px; overflow: hidden;
+  background: var(--night-2);
+}
+.g-card::after {   /* darken the lower card where the copy sits */
+  content: ""; position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(180deg, rgba(10, 20, 23, 0) 45%, rgba(10, 20, 23, .78) 100%);
+}
+.g-stage {
+  position: absolute; left: 0; width: 100%;
+  height: var(--stage-h);
+  top: calc(-1 * var(--top) * var(--stage-h));
+  container-type: inline-size;
+}
+.g-stage img { width: 100%; height: 100%; display: block; }
+.g-word {
+  position: absolute; left: 0; right: 0;
+  top: 25.2%;
+  text-align: center;
+  font: 300 15.4cqw/1 var(--f-display);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--snow);
+  white-space: nowrap;
+}
+.g-cutwrap {
+  position: absolute; z-index: 3; left: 0; right: 0; top: 0;
+  height: calc(var(--lift) + (.37 - var(--top)) * var(--stage-h));
+  overflow: hidden; pointer-events: none;
+}
+.g-stage--cut { top: calc(var(--lift) - var(--top) * var(--stage-h)); }
+.g-corner { position: absolute; z-index: 3; width: 44px; height: 44px; border: 0 solid rgba(228, 236, 236, .55); }
+.g-corner--tl { top: 16px; left: 16px; border-top-width: 1px; border-left-width: 1px; }
+.g-corner--tr { top: 16px; right: 16px; border-top-width: 1px; border-right-width: 1px; }
+.g-corner--bl { bottom: 16px; left: 16px; border-bottom-width: 1px; border-left-width: 1px; }
+.g-corner--br { bottom: 16px; right: 16px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.g-body { position: relative; z-index: 4; padding: 28px 4px 0; }
+.g-title { font: 300 clamp(26px, 3.4vw, 44px)/1.12 var(--f-display); max-width: 18ch; text-wrap: balance; }
+.g-lead { margin-top: 14px; max-width: 52ch; color: #C5D3D4; font-weight: 300; }
+.g-hero .hero__cta { margin-top: 24px; }
+.g-facts { display: flex; flex-wrap: wrap; gap: 14px 36px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); }
+.g-facts dt { font: 500 11px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ice); margin-bottom: 4px; }
+.g-facts dd { font: 400 15px/1.45 var(--f-mono); }
+
+.g-wrap { width: min(1180px, 100vw - 2 * var(--gutter)); margin: 0 auto; }
+@media (min-width: 900px) {
+  /* copy on the left, the photo card on the right at a size the portrait photo can hold */
+  .g-wrap { display: grid; grid-template-columns: 1fr min(520px, 44vw); gap: clamp(32px, 5vw, 80px); align-items: end; }
+  .g-frame { --w: min(520px, 44vw); order: 2; margin: 0; }
+  .g-card { height: auto; aspect-ratio: 1 / 1.3; }
+  .g-card::after { display: none; }
+  .g-body { order: 1; padding: 0 0 8px; min-width: 0; }
+  .g-title { font-size: clamp(34px, 3.6vw, 52px); }
+  .g-facts { flex-direction: column; gap: 14px; }
+}
+@media (max-width: 759px) {
+  .g-card { height: auto; aspect-ratio: 1 / 1.62; }
+  .g-card::after { display: none; }
+  .g-corner { width: 28px; height: 28px; }
+  .g-hero .hero__cta .btn { flex: 1 1 100%; }
 }
