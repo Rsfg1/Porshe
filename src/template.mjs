@@ -67,13 +67,13 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
   <div class="g-frame">
     <div class="g-card">
       <div class="g-stage"><img class="g-photo" src="../${esc(tour.heroImage)}" alt="" decoding="async"><p class="g-word" aria-hidden="true">${esc(tour.name)}</p></div>
+      <div class="g-caption"><p class="eyebrow">${esc(tour.eyebrow)}</p><h1 class="g-title" id="g-title">${esc(tour.headline)}</h1></div>
       <span class="g-corner g-corner--tl"></span><span class="g-corner g-corner--tr"></span><span class="g-corner g-corner--bl"></span><span class="g-corner g-corner--br"></span>
     </div>
     ${tour.heroCutout ? `<div class="g-cutwrap" aria-hidden="true"><div class="g-stage g-stage--cut"><img src="../${esc(tour.heroCutout)}" alt="" decoding="async"></div></div>` : ''}
   </div>
   <div class="g-body">
-      <p class="eyebrow">${esc(tour.eyebrow)}</p>
-      <h1 class="g-title" id="g-title">${esc(tour.headline)}</h1>
+      <div class="g-side"><p class="eyebrow">${esc(tour.eyebrow)}</p><p class="g-title" aria-hidden="true">${esc(tour.headline)}</p></div>
       <p class="g-lead">${esc(tour.lead)}</p>
       <div class="hero__cta">
         <a class="btn btn--signal" href="#lead" data-goal="cta_hero">Получить программу</a>
@@ -83,8 +83,8 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
         ${tour.showPrice
           ? `<div><dt>Экипаж из двоих</dt><dd>${rub(tour.price)}</dd></div>`
           : `<div><dt>В заезде</dt><dd>${tour.crewsPerDeparture} машин</dd></div>`}
-        <div><dt>Маршрут</dt><dd>${tour.days} дней · ${tour.km} км</dd></div>
-        <div><dt>Заезды</dt><dd>${tour.departures.map((d) => esc(d.label)).join(' · ')}</dd></div>
+        <div><dt>Маршрут</dt><dd>${tour.km} км</dd></div>
+        <div class="g-facts__dates"><dt>Заезды · ${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}</dt><dd>${tour.departures.map((d) => `<span>${esc(d.label)}</span>`).join('')}</dd></div>
       </dl>
     </div>
   </div>
