@@ -158,7 +158,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
         <h3 class="road__title">${esc(d.title)}</h3>
         <p class="road__route">${esc(d.route)}</p>
         <ul class="road__items">${d.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
-        ${d.photo ? `<figure class="road__photo"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}" loading="lazy" decoding="async"></figure>` : ''}
+        ${d.photo ? `<figure class="road__photo"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}"${d.photo.position ? ` style="object-position:${esc(d.photo.position)}"` : ''} loading="lazy" decoding="async"></figure>` : ''}
       </div>
     </li>`).join('')}
     <li class="road__day road__day--finish">
