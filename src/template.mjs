@@ -89,6 +89,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     </div>
   </div>
 </section>` : `<section class="hero" style="--hero-img:url('../${esc(tour.heroImage)}')">
+  ${tour.heroVideo ? `<video class="hero__video" poster="../${esc(tour.heroPoster || tour.heroImage)}" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="../${esc(tour.heroVideo)}" type="video/mp4">${tour.heroVideoWebm ? `<source src="../${esc(tour.heroVideoWebm)}" type="video/webm">` : ''}</video>` : ''}
   <div class="hero__shade" aria-hidden="true"></div>
   <p class="hero__word" aria-hidden="true">${esc(tour.name)}</p>
   <div class="wrap hero__body">

@@ -14,7 +14,7 @@
   "crewSize": 2,
   "crewsPerDeparture": 6,
   "price": 785000,
-  "heroImage": "assets/zaonezhie/hero-car.jpg",
+  "heroImage": "assets/zaonezhie/hero-poster.jpg",
   "departures": [
     {
       "id": "d1",
@@ -137,5 +137,8 @@
       "q": "…захочется настоящей карельской еды, а вокруг только лес",
       "a": "Кормим трижды в день местной кухней, включая уху лохикейто, которую вы сварите сами."
     }
-  ]
+  ],
+  "heroVideo": "assets/zaonezhie/hero.mp4",
+  "heroPoster": "assets/zaonezhie/hero-poster.jpg",
+  "heroVideoWebm": "assets/zaonezhie/hero.webm"
 }
