@@ -80,7 +80,8 @@
       ],
       "photo": {
         "src": "assets/zaonezhie/kivach.jpg",
-        "alt": "Водопад Кивач зимой"
+        "alt": "Водопад Кивач зимой",
+        "position": "50% 80%"
       }
     },
     {
