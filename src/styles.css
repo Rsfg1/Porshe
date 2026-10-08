@@ -133,7 +133,7 @@ ul, ol { padding: 0; list-style: none; }
   display: flex; align-items: flex-end;
   padding: 96px 0 48px;
   background: var(--night-2) var(--hero-img) 30% 60% / cover no-repeat;
-  background-position: 30% 60%;
+  background-position: 50% 60%;
   isolation: isolate;
 }
 .hero__shade {
@@ -172,7 +172,7 @@ ul, ol { padding: 0; list-style: none; }
 .hero__facts .hero__big { font: 700 clamp(22px, 2.6vw, 30px)/1.1 var(--f-display); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 
-@media (min-width: 760px) { .hero { background-position: 50% 92%; } }
+@media (min-width: 760px) { .hero { background-position: 50% 62%; } }
 @media (max-width: 759px) {
   .hero { padding-bottom: 32px; }
   .hero__body { padding-right: calc(var(--word) + var(--gutter)); }
