@@ -201,8 +201,8 @@ ul, ol { padding: 0; list-style: none; }
 .hero__shade {
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(13, 19, 23, .55) 0%, rgba(13, 19, 23, .1) 35%, rgba(13, 19, 23, .92) 78%),
-    linear-gradient(90deg, rgba(13, 19, 23, .75) 0%, rgba(13, 19, 23, 0) 70%);
+    linear-gradient(180deg, color-mix(in srgb, var(--night) 55%, transparent) 0%, color-mix(in srgb, var(--night) 10%, transparent) 35%, color-mix(in srgb, var(--night) 92%, transparent) 78%),
+    linear-gradient(90deg, color-mix(in srgb, var(--night) 75%, transparent) 0%, transparent 70%);
 }
 /* The tour name set vertically, like the spine of a poster */
 .hero__word {
@@ -646,3 +646,43 @@ ul, ol { padding: 0; list-style: none; }
 .g-side .g-title { font-size: clamp(28px, 3vw, 44px); }
 .road__odo { letter-spacing: 0; }
 .price__sum { font-family: var(--f-brand); font-weight: 400; }
+
+/* Buttons on a light accent (e.g. amber) need dark text */
+:root { --on-signal: #fff; }
+.btn--signal { color: var(--on-signal); }
+.tag { color: var(--on-signal); }
+
+/* ---- Photo placeholders (no photos for the tour yet) ---- */
+.hero--ph, .ph-box {
+  background:
+    repeating-linear-gradient(135deg, color-mix(in srgb, var(--snow) 5%, transparent) 0 2px, transparent 2px 22px),
+    radial-gradient(120% 90% at 85% 15%, color-mix(in srgb, var(--signal) 38%, var(--night-2)) 0%, var(--night-2) 55%, var(--night) 100%);
+}
+.ph-label {
+  position: absolute; z-index: 2; right: calc(var(--gutter) + 8px); top: 22px;
+  font: 500 11px/1.3 var(--f-mono); letter-spacing: .08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--snow) 70%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--snow) 40%, transparent);
+  padding: 6px 10px; max-width: 60%;
+}
+.hero--ph .ph-label { right: auto; left: var(--content-x); top: 56px; }
+.ph-box { position: relative; display: block; }
+.ph-box .ph-label { top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%); text-align: center; }
+.road__photo--lead.ph-box { -webkit-mask-image: none; mask-image: none; }
+
+/* ---- Temporary tour switcher (prototype only) ---- */
+.tourswitch { background: #F4F1EC; color: #111; padding: 28px 0 130px; border-top: 3px dashed #111; position: relative; z-index: 6; }
+@media (min-width: 760px) { .tourswitch { padding-bottom: 40px; } }
+.tourswitch__note { font: 500 12px/1.4 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 14px; color: #555; }
+.tourswitch__list { display: flex; flex-wrap: wrap; gap: 8px; }
+.tourswitch__list a {
+  display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; min-width: 120px;
+  border: 1.5px solid #111; color: #111; text-decoration: none; background: #fff;
+}
+.tourswitch__list a span { font: 600 15px/1.2 var(--f-body); }
+.tourswitch__list a small { font: 400 12px/1.2 var(--f-mono); color: #666; }
+.tourswitch__list a:hover { background: #111; color: #fff; }
+.tourswitch__list a:hover small { color: #ccc; }
+.tourswitch__list a[aria-current="page"] { background: #111; color: #fff; }
+.tourswitch__list a[aria-current="page"] small { color: #ccc; }
+.footer { padding-bottom: 56px; }
