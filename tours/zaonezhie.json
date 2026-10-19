@@ -140,5 +140,7 @@
   ],
   "heroVideo": "assets/zaonezhie/hero.mp4",
   "heroPoster": "assets/zaonezhie/hero-poster.jpg",
-  "heroVideoWebm": "assets/zaonezhie/hero.webm"
+  "heroVideoWebm": "assets/zaonezhie/hero.webm",
+  "order": 1,
+  "when": "декабрь"
 }

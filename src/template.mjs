@@ -29,7 +29,7 @@ const messengerLinks = (cfg, cls) => {
   ].filter(Boolean).join('');
 };
 
-export function render(tour, cfg) {
+export function render(tour, cfg, allTours = []) {
   const perPersonDay = Math.round(tour.price / tour.crewSize / tour.days / 1000) * 1000;
   const seats = tour.crewSize * tour.crewsPerDeparture;
   const leadChannels = [
@@ -48,11 +48,11 @@ export function render(tour, cfg) {
 <meta name="description" content="${esc(tour.meta.description)}">
 <meta property="og:title" content="${esc(tour.meta.title)}">
 <meta property="og:description" content="${esc(tour.meta.description)}">
-<meta property="og:image" content="../${esc(tour.heroImage)}">
+${tour.heroImage ? `<meta property="og:image" content="../${esc(tour.heroImage)}">` : ''}
 <meta name="theme-color" content="#0D1317">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
-<body class="theme-${esc(tour.theme || 'poster')}">
+<body class="theme-${esc(tour.theme || 'poster')}"${tour.palette ? ` style="${Object.entries(tour.palette).map(([k, v]) => `--${esc(k)}:${esc(v)}`).join(';')}"` : ''}>
 <a class="skip" href="#lead">К заявке</a>
 
 <div class="page">
@@ -88,7 +88,8 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
       </dl>
     </div>
   </div>
-</section>` : `<section class="hero" style="--hero-img:url('../${esc(tour.heroImage)}')">
+</section>` : `<section class="hero${tour.heroImage || tour.heroVideo ? '' : ' hero--ph'}"${tour.heroImage ? ` style="--hero-img:url('../${esc(tour.heroImage)}')"` : ''}>
+  ${tour.heroImage || tour.heroVideo ? '' : '<p class="ph-label" aria-hidden="true">Здесь будет фото или видео тура</p>'}
   ${tour.heroVideo ? `<video class="hero__video" poster="../${esc(tour.heroPoster || tour.heroImage)}" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="../${esc(tour.heroVideo)}" type="video/mp4">${tour.heroVideoWebm ? `<source src="../${esc(tour.heroVideoWebm)}" type="video/webm">` : ''}</video>` : ''}
   <div class="hero__shade" aria-hidden="true"></div>
   <p class="hero__word" aria-hidden="true">${esc(tour.name)}</p>
@@ -149,7 +150,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     <p class="eyebrow">Программа</p>
     <h2 class="h2" id="road-h">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}, ${tour.km} км</h2>
   </div>
-  ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}" loading="lazy" decoding="async"></figure>` : ''}
+  ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}" loading="lazy" decoding="async"></figure>` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
   <ol class="road">
     ${tour.program.map((d) => `
     <li class="road__day">
@@ -267,7 +268,7 @@ ${tour.reviews.length ? `
     <div class="faq">
       <details><summary>Что не входит в стоимость?</summary><p>${esc(tour.notIncluded)}. Встречаем и провожаем в аэропорту ${esc(tour.airportCity)} — трансфер включён.</p></details>
       <details><summary>Можно поехать одному или втроём?</summary><p>Программа рассчитана на машину с двумя участниками. Для другого состава ${esc(cfg.manager)} подберёт вариант.</p></details>
-      <details><summary>Нужен ли опыт езды по снегу?</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
+      <details><summary>${esc(tour.experienceQ || 'Нужен ли особый опыт вождения?')}</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
       <details><summary>Как бронировать и платить?</summary><p>Заключаем договор с туроператором из федерального реестра (${esc(cfg.registry)}). Условия оплаты и отмены прописаны в договоре — пришлём его вместе с программой.</p></details>
       <details><summary>Можно забронировать весь заезд для своей компании?</summary><p>Да. Выберите «Группа от компании» в форме выше или позвоните: ${esc(cfg.phone)}.</p></details>
     </div>
@@ -283,6 +284,13 @@ ${tour.reviews.length ? `
     <p><a href="${esc(cfg.phoneHref)}" data-goal="phone">${esc(cfg.phone)}</a><br><a href="mailto:${esc(cfg.email)}">${esc(cfg.email)}</a></p>
   </div>
 </footer>
+
+${allTours.length > 1 ? `<nav class="tourswitch" aria-label="Туры (временная навигация)">
+  <div class="wrap">
+    <p class="tourswitch__note">Временная навигация для удобства просмотра прототипа. На рабочем сайте её не будет.</p>
+    <ul class="tourswitch__list">${allTours.map((t) => `<li><a href="../${esc(t.slug)}/index.html"${t.slug === tour.slug ? ' aria-current="page"' : ''}><span>${esc(t.name)}</span><small>${esc(t.when)}</small></a></li>`).join('')}</ul>
+  </div>
+</nav>` : ''}
 
 </div>
 
