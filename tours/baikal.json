@@ -91,7 +91,9 @@
       ],
       "photo": {
         "src": "assets/baikal/cars-rock.jpg",
-        "alt": "Машины на льду у скалы"
+        "alt": "Машины на льду у скалы",
+        "position": "15% 100%",
+        "positionMobile": "50% 50%"
       }
     },
     {
@@ -107,7 +109,9 @@
       ],
       "photo": {
         "src": "assets/baikal/cars-ice.jpg",
-        "alt": "Три машины на льду Байкала у скал"
+        "alt": "Три машины на льду Байкала у скал",
+        "position": "54% 55%",
+        "positionMobile": "50% 50%"
       }
     },
     {

@@ -153,14 +153,14 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
   ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}"${tour.roadImage.position ? ` style="object-position:${esc(tour.roadImage.position)}"` : ''} loading="lazy" decoding="async"></figure>` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
   <ol class="road">
     ${tour.program.map((d) => `
-    <li class="road__day">
+    <li class="road__day${d.photo ? ' road__day--bg' : ''}">
       <span class="road__node" aria-hidden="true"></span>
+      ${d.photo ? `<figure class="road__bg"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}" style="--pos-m:${esc(d.photo.positionMobile || d.photo.position || '50% 50%')};--pos-d:${esc(d.photo.position || '50% 50%')}" loading="lazy" decoding="async"></figure>` : ''}
       <div class="wrap">
         <p class="road__num">День ${d.day}${d.driving ? ' <span class="tag">За рулём</span>' : ''}</p>
         <h3 class="road__title">${esc(d.title)}</h3>
         <p class="road__route">${esc(d.route)}</p>
         <ul class="road__items">${d.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
-        ${d.photo ? `<figure class="road__photo"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}"${d.photo.position ? ` style="object-position:${esc(d.photo.position)}"` : ''} loading="lazy" decoding="async"></figure>` : ''}
       </div>
     </li>`).join('')}
     <li class="road__day road__day--finish">

@@ -269,7 +269,41 @@ ul, ol { padding: 0; list-style: none; }
 @media (min-width: 760px) {
   .road__photo { aspect-ratio: auto; height: min(62vh, 620px); }
 }
-.road__day:has(.road__photo) { padding-bottom: 8px; }
+
+/* Days with a photo.
+   Phones: the photo is its own block under the text of the day, dissolving into the ground like before.
+   Desktop: the photo is the background of the whole day and the text sits on top of a dark veil. */
+.road__day--bg { display: flex; flex-direction: column; padding-bottom: 8px; }
+.road__bg {
+  order: 2; width: 100vw; margin: 4px 0 0; aspect-ratio: 4 / 3; position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
+}
+.road__bg img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos-m, 50% 50%); }
+@media (min-width: 760px) {
+  .road__bg img { object-position: var(--pos-d, 50% 50%); }
+  .road__day--bg {
+    isolation: isolate; color: #fff;
+    flex-direction: row;
+    /* Text goes to the top-left corner so it does not cover the cars and landmarks that sit in the lower part of the frames */
+    align-items: flex-start;
+    min-height: clamp(580px, 80vh, 740px);
+    padding: 56px 0; margin-top: 8px;
+  }
+  .road__bg { position: absolute; inset: 0; z-index: -1; margin: 0; width: auto; aspect-ratio: auto; -webkit-mask-image: none; mask-image: none; }
+  .road__bg::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(7, 11, 15, .6) 0, rgba(7, 11, 15, 0) 62%),
+      linear-gradient(to right, rgba(7, 11, 15, .6) 0, rgba(7, 11, 15, .3) 42%, rgba(7, 11, 15, 0) 75%);
+  }
+  .road__day--bg .wrap { position: relative; width: 100%; }
+  .road__day--bg .wrap > * { max-width: min(100%, 560px); }
+  .road__day--bg .road__title, .road__day--bg .road__num { color: #fff; }
+  .road__day--bg .road__route { color: rgba(255, 255, 255, .78); }
+  .road__day--bg .road__items { color: rgba(255, 255, 255, .94); }
+  .road__day--bg .road__items li::before { color: rgba(255, 255, 255, .7); }
+}
 
 /* What if */
 .whatif { display: grid; gap: 0; margin-top: 40px; }
