@@ -328,10 +328,47 @@ ul, ol { padding: 0; list-style: none; }
 .road__photo img { width: 100%; height: 100%; object-fit: cover; }
 .road__photo--lead { width: 100%; margin: 32px 0 40px; aspect-ratio: 4 / 3; }
 .road__photo--lead img { object-position: 62% 60%; }
+/* Desktop: photos keep their natural 16:10 instead of being stretched edge to edge.
+   They sit flush against the rail; the text of the day (or the key numbers) goes to the right. */
+.road__facts { display: none; }
 @media (min-width: 760px) {
-  .road__photo { aspect-ratio: auto; height: min(62vh, 620px); }
+  .road__photo { aspect-ratio: 16 / 10; height: auto; width: 100%; max-width: 1040px; margin-left: 0; }
+  .road__photo--lead { width: min(1040px, calc(100% - var(--content-x) - var(--gutter))); margin-left: var(--content-x); }
 }
-.road__day:has(.road__photo) { padding-bottom: 8px; }
+@media (min-width: 960px) {
+  .road__lead {
+    --rail-edge: calc(var(--rail-x) + var(--rail-w));
+    display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: end;
+    column-gap: clamp(28px, 4vw, 64px);
+    margin: 32px 0 40px;
+    padding-left: var(--rail-edge);
+    padding-right: max(var(--gutter), calc(100% - var(--content-x) - var(--max)));
+  }
+  .road__lead .road__photo--lead { width: 100%; max-width: none; margin: 0; }
+  .road__facts { display: grid; gap: 28px; padding-bottom: 8px; }
+  .road__facts dt { font: 500 12px/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--moss); order: 2; }
+  .road__facts dd { font: 700 clamp(30px, 3.4vw, 48px)/1.05 var(--f-display); }
+  .road__facts div { display: flex; flex-direction: column; gap: 6px; border-top: 2px solid var(--ink); padding-top: 12px; }
+
+  .wrap--photo {
+    --rail-edge: calc(var(--rail-x) + var(--rail-w));
+    display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-content: start;
+    column-gap: clamp(28px, 4vw, 64px);
+    padding-left: var(--rail-edge);
+  }
+  .wrap--photo > .road__photo { grid-column: 1; grid-row: 1 / span 4; margin: 0; width: 100%; max-width: none; align-self: start; }
+  .wrap--photo > :not(.road__photo) { grid-column: 2; }
+  .wrap--photo .road__num { margin-top: 0; }
+}
+/* Days with a photo: room below, and a soft hairline that fades out to the right to separate the blocks */
+.road__day:has(.road__photo) { padding-bottom: 72px; }
+.road__day:has(.road__photo)::after {
+  content: ""; position: absolute; left: calc(var(--rail-x) + var(--rail-w)); right: var(--gutter); bottom: 36px; height: 2px;
+  background: currentColor; opacity: .22;
+  -webkit-mask-image: linear-gradient(to right, #000, transparent 85%);
+  mask-image: linear-gradient(to right, #000, transparent 85%);
+  pointer-events: none;
+}
 
 /* What if */
 .whatif { display: grid; gap: 0; margin-top: 40px; }
