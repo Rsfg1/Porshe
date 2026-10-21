@@ -1,6 +1,6 @@
 {
   "slug": "baikal",
-  "theme": "glacier",
+  "theme": "poster",
   "meta": {
     "title": "Байкал на Cayenne — ледовый автотур, февраль–март 2027",
     "description": "5 дней и 900 км: за рулём Cayenne по льду Байкала с ледовым капитаном. Четыре заезда с 22 февраля по 18 марта 2027, шесть машин в заезде."
@@ -17,8 +17,7 @@
   "price": 1845000,
   "showPrice": false,
   "airportCity": "Иркутска",
-  "heroImage": "assets/baikal/ogoy.jpg",
-  "heroCutout": "assets/baikal/rock-cut.png",
+  "heroImage": "assets/baikal/hero-sunset.jpg",
   "departures": [
     {
       "id": "d1",
@@ -89,23 +88,27 @@
         "Обед в бухте Ая с видом на Байкал, знакомство с ледовым капитаном",
         "Дорога вдоль заснеженных просторов и «приветственный поцелуй Байкала»",
         "Заселение в отель «Алтан», ужин"
-      ]
+      ],
+      "photo": {
+        "src": "assets/baikal/cars-rock.jpg",
+        "alt": "Машины на льду у скалы"
+      }
     },
     {
       "day": 3,
       "title": "День на льду",
       "route": "Лёд Малого Моря",
       "driving": true,
-      "photo": {
-        "src": "assets/baikal/cars-ice.jpg",
-        "alt": "Три машины на льду Байкала у скал"
-      },
       "items": [
         "Весь день за рулём Cayenne по льду",
         "Обед в ресторане на льду",
         "Коньки на самом большом катке в мире",
         "Школа контраварийного вождения с инструкторами"
-      ]
+      ],
+      "photo": {
+        "src": "assets/baikal/cars-ice.jpg",
+        "alt": "Три машины на льду Байкала у скал"
+      }
     },
     {
       "day": 4,
@@ -150,5 +153,22 @@
   "gallery": [],
   "reviews": [],
   "order": 2,
-  "when": "февраль–март"
+  "when": "февраль–март",
+  "heroPosition": "30% 55%",
+  "roadImage": {
+    "src": "assets/baikal/grotto.jpg",
+    "alt": "Ледяной грот на Байкале, машины на льду"
+  },
+  "palette": {
+    "night": "#0A1820",
+    "night-2": "#11252F",
+    "snow": "#EAF2F4",
+    "signal": "#4CC3D9",
+    "signal-deep": "#2EA6BE",
+    "on-signal": "#0A1820",
+    "ice": "#A6C9D3",
+    "moss": "#4D6570",
+    "ink": "#0A1820"
+  },
+  "experienceQ": "Нужен ли опыт езды по льду?"
 }

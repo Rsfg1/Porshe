@@ -624,3 +624,6 @@ ul, ol { padding: 0; list-style: none; }
 .tourswitch__list a[aria-current="page"] { background: #111; color: #fff; }
 .tourswitch__list a[aria-current="page"] small { color: #ccc; }
 .footer { padding-bottom: 56px; }
+@media (max-width: 759px) { .h2 { font-size: clamp(17px, 5vw, 22px); overflow-wrap: anywhere; } }
+@media (max-width: 759px) { .hero__title { font-size: clamp(19px, 5.6vw, 24px); overflow-wrap: anywhere; } }
+@media (max-width: 759px) { .h2, .hero__title { hyphens: auto; -webkit-hyphens: auto; } .h2 { font-size: clamp(16px, 4.6vw, 22px); } }

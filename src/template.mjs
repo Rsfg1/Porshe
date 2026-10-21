@@ -88,7 +88,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
       </dl>
     </div>
   </div>
-</section>` : `<section class="hero${tour.heroImage || tour.heroVideo ? '' : ' hero--ph'}"${tour.heroImage ? ` style="--hero-img:url('../${esc(tour.heroImage)}')"` : ''}>
+</section>` : `<section class="hero${tour.heroImage || tour.heroVideo ? '' : ' hero--ph'}"${tour.heroImage ? ` style="--hero-img:url('../${esc(tour.heroImage)}')${tour.heroPosition ? `;background-position:${esc(tour.heroPosition)}` : ''}"` : ''}>
   ${tour.heroImage || tour.heroVideo ? '' : '<p class="ph-label" aria-hidden="true">Здесь будет фото или видео тура</p>'}
   ${tour.heroVideo ? `<video class="hero__video" poster="../${esc(tour.heroPoster || tour.heroImage)}" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="../${esc(tour.heroVideo)}" type="video/mp4">${tour.heroVideoWebm ? `<source src="../${esc(tour.heroVideoWebm)}" type="video/webm">` : ''}</video>` : ''}
   <div class="hero__shade" aria-hidden="true"></div>
