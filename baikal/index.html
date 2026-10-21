@@ -8,11 +8,11 @@
 <meta name="description" content="5 дней и 900 км: за рулём Cayenne по льду Байкала с ледовым капитаном. Четыре заезда с 22 февраля по 18 марта 2027, шесть машин в заезде.">
 <meta property="og:title" content="Байкал на Cayenne — ледовый автотур, февраль–март 2027">
 <meta property="og:description" content="5 дней и 900 км: за рулём Cayenne по льду Байкала с ледовым капитаном. Четыре заезда с 22 февраля по 18 марта 2027, шесть машин в заезде.">
-<meta property="og:image" content="../assets/baikal/ogoy.jpg">
+<meta property="og:image" content="../assets/baikal/hero-sunset.jpg">
 <meta name="theme-color" content="#0D1317">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
-<body class="theme-glacier">
+<body class="theme-poster" style="--night:#0A1820;--night-2:#11252F;--snow:#EAF2F4;--signal:#4CC3D9;--signal-deep:#2EA6BE;--on-signal:#0A1820;--ice:#A6C9D3;--moss:#4D6570;--ink:#0A1820">
 <p style="margin:0;padding:8px 16px;background:#ECEFED;color:#121619;font:500 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.04em;text-align:center">Прототип посадочной страницы · заявки из формы никуда не отправляются</p>
 <a class="skip" href="#lead">К заявке</a>
 
@@ -23,28 +23,22 @@
   <a class="topbar__phone" href="tel:+79218911911" data-goal="phone">+7 (921) 891-19-11</a>
 </header>
 
-<section class="g-hero" aria-labelledby="g-title">
-  <div class="g-wrap">
-  <div class="g-frame">
-    <div class="g-card">
-      <div class="g-stage"><img class="g-photo" src="../assets/baikal/ogoy.jpg" alt="" decoding="async"><p class="g-word" aria-hidden="true">Байкал</p></div>
-      <div class="g-caption"><p class="eyebrow">Ледовый автотур · Байкал · февраль–март 2027</p><h1 class="g-title" id="g-title">Байкал за рулём Cayenne</h1></div>
-      <span class="g-corner g-corner--tl"></span><span class="g-corner g-corner--tr"></span><span class="g-corner g-corner--bl"></span><span class="g-corner g-corner--br"></span>
-    </div>
-    <div class="g-cutwrap" aria-hidden="true"><div class="g-stage g-stage--cut"><img src="../assets/baikal/rock-cut.png" alt="" decoding="async"></div></div>
-  </div>
-  <div class="g-body">
-      <div class="g-side"><p class="eyebrow">Ледовый автотур · Байкал · февраль–март 2027</p><p class="g-title" aria-hidden="true">Байкал за рулём Cayenne</p></div>
-      <p class="g-lead">Пять дней и 900 км: по прозрачному льду самого глубокого озера мира, с ледовым капитаном и обедом в ресторане прямо на льду. В заезде шесть машин, по два человека в каждой.</p>
-      <div class="hero__cta">
-        <a class="btn btn--signal" href="#lead" data-goal="cta_hero">Получить программу</a>
-        <a class="btn btn--ghost" href="https://wa.me/79218790911" data-goal="messenger_wa" target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-      <dl class="g-facts">
-        <div><dt>В заезде</dt><dd>6 машин</dd></div>
-        <div><dt>Маршрут</dt><dd>900 км</dd></div>
-        <div class="g-facts__dates"><dt>Заезды · 5 дней</dt><dd><span>22–26 февраля</span><span>1–5 марта</span><span>8–12 марта</span><span>14–18 марта</span></dd></div>
-      </dl>
+<section class="hero" style="--hero-img:url('../assets/baikal/hero-sunset.jpg');background-position:30% 55%">
+  
+  
+  <div class="hero__shade" aria-hidden="true"></div>
+  <p class="hero__word" aria-hidden="true">Байкал</p>
+  <div class="wrap hero__body">
+    <p class="eyebrow">Ледовый автотур · Байкал · февраль–март 2027</p>
+    <h1 class="hero__title">Байкал за рулём Cayenne</h1>
+    <p class="hero__lead">Пять дней и 900 км: по прозрачному льду самого глубокого озера мира, с ледовым капитаном и обедом в ресторане прямо на льду. В заезде шесть машин, по два человека в каждой.</p>
+    <dl class="hero__facts">
+      <div><dt>В заезде</dt><dd class="hero__big">6 машин</dd></div>
+      <div><dt>Заезды</dt><dd>22–26 февраля<br>1–5 марта<br>8–12 марта<br>14–18 марта</dd></div>
+    </dl>
+    <div class="hero__cta">
+      <a class="btn btn--signal" href="#lead" data-goal="cta_hero">Получить программу</a>
+      <a class="btn btn--ghost" href="https://wa.me/79218790911" data-goal="messenger_wa" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </div>
 </section>
@@ -105,7 +99,7 @@
     <p class="eyebrow">Программа</p>
     <h2 class="h2" id="road-h">5 дней, 900 км</h2>
   </div>
-  <div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: Cayenne на маршруте</p></div>
+  <figure class="road__photo road__photo--lead"><img src="../assets/baikal/grotto.jpg" alt="Ледяной грот на Байкале, машины на льду" loading="lazy" decoding="async"></figure>
   <ol class="road">
     
     <li class="road__day">
@@ -125,7 +119,7 @@
         <h3 class="road__title">К Байкалу</h3>
         <p class="road__route">Иркутск → бухта Ая → Сарма</p>
         <ul class="road__items"><li>Выезжаем из Иркутска</li><li>Обед в бухте Ая с видом на Байкал, знакомство с ледовым капитаном</li><li>Дорога вдоль заснеженных просторов и «приветственный поцелуй Байкала»</li><li>Заселение в отель «Алтан», ужин</li></ul>
-        
+        <figure class="road__photo"><img src="../assets/baikal/cars-rock.jpg" alt="Машины на льду у скалы" loading="lazy" decoding="async"></figure>
       </div>
     </li>
     <li class="road__day">
@@ -254,7 +248,7 @@
     <div class="faq">
       <details><summary>Что не входит в стоимость?</summary><p>Билеты до Иркутска и обратно. Встречаем и провожаем в аэропорту Иркутска — трансфер включён.</p></details>
       <details><summary>Можно поехать одному или втроём?</summary><p>Программа рассчитана на машину с двумя участниками. Для другого состава Виктория подберёт вариант.</p></details>
-      <details><summary>Нужен ли особый опыт вождения?</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
+      <details><summary>Нужен ли опыт езды по льду?</summary><p>Нет. В первый вечер проводим брифинг по безопасности, маршрут проверен командой заранее, рядом с колонной едет техподдержка.</p></details>
       <details><summary>Как бронировать и платить?</summary><p>Заключаем договор с туроператором из федерального реестра (РТО 024756). Условия оплаты и отмены прописаны в договоре — пришлём его вместе с программой.</p></details>
       <details><summary>Можно забронировать весь заезд для своей компании?</summary><p>Да. Выберите «Группа от компании» в форме выше или позвоните: +7 (921) 891-19-11.</p></details>
     </div>
