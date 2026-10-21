@@ -150,7 +150,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     <p class="eyebrow">Программа</p>
     <h2 class="h2" id="road-h">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}, ${tour.km} км</h2>
   </div>
-  ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}" loading="lazy" decoding="async"></figure>` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
+  ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}"${tour.roadImage.position ? ` style="object-position:${esc(tour.roadImage.position)}"` : ''} loading="lazy" decoding="async"></figure>` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
   <ol class="road">
     ${tour.program.map((d) => `
     <li class="road__day">

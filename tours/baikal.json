@@ -157,7 +157,8 @@
   "heroPosition": "30% 55%",
   "roadImage": {
     "src": "assets/baikal/grotto.jpg",
-    "alt": "Ледяной грот на Байкале, машины на льду"
+    "alt": "Ледяной грот на Байкале, машины на льду",
+    "position": "60% 35%"
   },
   "palette": {
     "night": "#0A1820",
