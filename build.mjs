@@ -20,7 +20,7 @@ await copyFile('src/app.js', 'dist/assets/app.js');
 const tours = Object.values(raw).map(resolve);
 // temporary switcher lists main tours only (A/B variants excluded), in schedule order
 const nav = tours.filter((t) => !t.extends).sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-  .map((t) => ({ slug: t.slug, name: t.name, when: t.when || '' }));
+  .map((t) => ({ slug: t.slug, name: t.name, when: t.when || '', sold: (t.departures || []).filter((d) => d.status === 'sold').map((d) => d.label) }));
 const links = [];
 for (const tour of tours) {
   await mkdir(`dist/${tour.slug}`, { recursive: true });

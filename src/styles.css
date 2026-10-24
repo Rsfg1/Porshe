@@ -661,3 +661,14 @@ ul, ol { padding: 0; list-style: none; }
 @media (max-width: 759px) { .h2 { font-size: clamp(17px, 5vw, 22px); overflow-wrap: anywhere; } }
 @media (max-width: 759px) { .hero__title { font-size: clamp(19px, 5.6vw, 24px); overflow-wrap: anywhere; } }
 @media (max-width: 759px) { .h2, .hero__title { hyphens: auto; -webkit-hyphens: auto; } .h2 { font-size: clamp(16px, 4.6vw, 22px); } }
+
+/* Sold departures */
+.ticket--sold { opacity: .6; border-top-color: #8A949A; }
+.ticket--sold .ticket__date { text-decoration: line-through; text-decoration-thickness: 2px; }
+.ticket--sold .ticket__status { color: #666; }
+.is-sold { opacity: .55; text-decoration: line-through; }
+.tourswitch__note--sold { margin-top: 22px; }
+.tourswitch__list--sold a, .tourswitch__static { opacity: .75; }
+.tourswitch__static { display: flex; flex-direction: column; gap: 4px; padding: 10px 14px; border: 1.5px dashed #999; }
+.tourswitch__static span { font: 600 15px/1.2 var(--f-body); }
+.tourswitch__static small { font: 400 12px/1.2 var(--f-mono); color: #666; }

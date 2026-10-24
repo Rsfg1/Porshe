@@ -1,6 +1,5 @@
 {
   "crewSize": 2,
-  "crewsPerDeparture": 6,
   "showPrice": false,
   "gallery": [],
   "reviews": [],
@@ -25,7 +24,7 @@
     {
       "id": "d1",
       "label": "4–8 июня",
-      "status": "open",
+      "status": "sold",
       "left": null
     },
     {

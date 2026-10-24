@@ -8,6 +8,7 @@ const esc = (s) =>
 const rub = (n) => n.toLocaleString('ru-RU').replace(/ /g, ' ') + ' ₽';
 
 const statusLabel = (d) => {
+  if (d.status === 'sold') return 'Продан';
   if (d.status === 'full') return 'Мест нет · лист ожидания';
   if (d.status === 'few' && d.left) return `Осталось ${d.left} ${plural(d.left, 'экипаж', 'экипажа', 'экипажей')}`;
   return 'Идёт набор экипажей';
@@ -30,8 +31,11 @@ const messengerLinks = (cfg, cls) => {
 };
 
 export function render(tour, cfg, allTours = []) {
+  const soldItems = [
+    ...allTours.flatMap((t) => (t.sold || []).map((label) => `<li><a href="../${esc(t.slug)}/index.html#dates"><span>${esc(t.name)}</span><small>${esc(label)} · продан</small></a></li>`)),
+    ...(cfg.soldOut || []).map((s) => `<li><span class="tourswitch__static"><span>${esc(s.name)}</span><small>${esc(s.when)} · ${esc(s.note)}</small></span></li>`),
+  ];
   const perPersonDay = Math.round(tour.price / tour.crewSize / tour.days / 1000) * 1000;
-  const seats = tour.crewSize * tour.crewsPerDeparture;
   const leadChannels = [
     cfg.messengers.telegram && 'Telegram',
     cfg.messengers.max && 'MAX',
@@ -82,9 +86,9 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
       <dl class="g-facts">
         ${tour.showPrice
           ? `<div><dt>Экипаж из двоих</dt><dd>${rub(tour.price)}</dd></div>`
-          : `<div><dt>В заезде</dt><dd>${tour.crewsPerDeparture} машин</dd></div>`}
+          : `<div><dt>В машине</dt><dd>${tour.crewSize} ${plural(tour.crewSize, 'участник', 'участника', 'участников')}</dd></div>`}
         <div><dt>Маршрут</dt><dd>${tour.km} км</dd></div>
-        <div class="g-facts__dates"><dt>Заезды · ${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}</dt><dd>${tour.departures.map((d) => `<span>${esc(d.label)}</span>`).join('')}</dd></div>
+        <div class="g-facts__dates"><dt>Заезды · ${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}</dt><dd>${tour.departures.map((d) => `<span${d.status === 'sold' ? ' class="is-sold"' : ''}>${esc(d.label)}${d.status === 'sold' ? ' · продан' : ''}</span>`).join('')}</dd></div>
       </dl>
     </div>
   </div>
@@ -100,8 +104,8 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     <dl class="hero__facts">
       ${tour.showPrice
         ? `<div><dt>Экипаж из двоих</dt><dd class="hero__big">${rub(tour.price)}</dd></div>`
-        : `<div><dt>В заезде</dt><dd class="hero__big">${tour.crewsPerDeparture} машин</dd></div>`}
-      <div><dt>Заезды</dt><dd>${tour.departures.map((d) => esc(d.label)).join('<br>')}</dd></div>
+        : `<div><dt>В машине</dt><dd class="hero__big">${tour.crewSize} ${plural(tour.crewSize, 'участник', 'участника', 'участников')}</dd></div>`}
+      <div><dt>Заезды</dt><dd>${tour.departures.map((d) => d.status === 'sold' ? `<span class="is-sold">${esc(d.label)} · продан</span>` : esc(d.label)).join('<br>')}</dd></div>
     </dl>
     <div class="hero__cta">
       <a class="btn btn--signal" href="#lead" data-goal="cta_hero">Получить программу</a>
@@ -114,7 +118,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
 
 <section class="sec sec--snow" id="dates" aria-labelledby="dates-h">
   <div class="wrap">
-    <p class="eyebrow">${tour.departures.length} заезда · ${tour.crewsPerDeparture} машин · ${seats} человек в каждом</p>
+    <p class="eyebrow">${tour.departures.length} ${plural(tour.departures.length, 'заезд', 'заезда', 'заездов')} · в машине ${tour.crewSize} ${plural(tour.crewSize, 'участник', 'участника', 'участников')}</p>
     <h2 class="h2" id="dates-h">Выберите заезд</h2>
     <ul class="tickets">
       ${tour.departures.map((d) => `
@@ -122,7 +126,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
         <p class="ticket__date">${esc(d.label)}</p>
         <p class="ticket__meta">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')} · ${tour.km} км · ${esc(tour.car)}</p>
         <p class="ticket__status">${esc(statusLabel(d))}</p>
-        <a class="btn btn--ink" href="#lead" data-departure="${esc(d.id)}" data-goal="cta_departure">${d.status === 'full' ? 'В лист ожидания' : 'Забронировать место'}</a>
+        <a class="btn btn--ink" href="#lead" data-departure="${esc(d.id)}" data-goal="cta_departure">${d.status === 'sold' ? 'Спросить про другие даты' : d.status === 'full' ? 'В лист ожидания' : 'Забронировать место'}</a>
       </li>`).join('')}
     </ul>
   </div>
@@ -184,7 +188,6 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     <dl class="whatif">
       ${tour.whatif.map((w) => `<div><dt>${esc(w.q)}</dt><dd>${esc(w.a)}</dd></div>`).join('')}
     </dl>
-    <p class="why__note">${tour.crewsPerDeparture} машин в заезде — это ${seats} человек. Команда успевает заметить каждого.</p>
   </div>
 </section>
 
@@ -222,7 +225,7 @@ ${tour.reviews.length ? `
       <fieldset class="quiz__step" data-step="1">
         <legend>Какой заезд вам подходит?</legend>
         <div class="opts">
-          ${tour.departures.map((d) => `<label class="opt"><input type="radio" name="departure" value="${esc(d.label)}" data-departure-id="${esc(d.id)}"><span>${esc(d.label)}</span></label>`).join('')}
+          ${tour.departures.filter((d) => d.status !== 'sold').map((d) => `<label class="opt"><input type="radio" name="departure" value="${esc(d.label)}" data-departure-id="${esc(d.id)}"><span>${esc(d.label)}</span></label>`).join('')}
           <label class="opt"><input type="radio" name="departure" value="Пока выбираю"><span>Пока выбираю</span></label>
         </div>
       </fieldset>
@@ -289,6 +292,8 @@ ${allTours.length > 1 ? `<nav class="tourswitch" aria-label="Туры (врем�
   <div class="wrap">
     <p class="tourswitch__note">Временная навигация для удобства просмотра прототипа. На рабочем сайте её не будет.</p>
     <ul class="tourswitch__list">${allTours.map((t) => `<li><a href="../${esc(t.slug)}/index.html"${t.slug === tour.slug ? ' aria-current="page"' : ''}><span>${esc(t.name)}</span><small>${esc(t.when)}</small></a></li>`).join('')}</ul>
+    ${soldItems.length ? `<p class="tourswitch__note tourswitch__note--sold">Проданные заезды и туры</p>
+    <ul class="tourswitch__list tourswitch__list--sold">${soldItems.join('')}</ul>` : ''}
   </div>
 </nav>` : ''}
 

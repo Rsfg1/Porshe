@@ -15,5 +15,12 @@
   },
   "leadEndpoint": "",
   "metrikaId": null,
-  "privacyUrl": "https://drive-travel.ru/"
+  "privacyUrl": "https://drive-travel.ru/",
+  "soldOut": [
+    {
+      "name": "Карелия на 911 Safari",
+      "when": "октябрь 2026",
+      "note": "продан, лист ожидания (страницы нет)"
+    }
+  ]
 }

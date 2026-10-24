@@ -1,6 +1,5 @@
 {
   "crewSize": 2,
-  "crewsPerDeparture": 6,
   "showPrice": false,
   "gallery": [],
   "reviews": [],
@@ -37,7 +36,7 @@
     {
       "id": "d3",
       "label": "22–26 мая",
-      "status": "open",
+      "status": "sold",
       "left": null
     },
     {
