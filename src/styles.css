@@ -268,6 +268,8 @@ ul, ol { padding: 0; list-style: none; }
 .road__photo--lead img { object-position: 62% 60%; }
 @media (min-width: 760px) {
   .road__photo { aspect-ratio: auto; height: min(62vh, 620px); }
+  /* The opening photo of the program keeps its natural 3:2 so the whole car is visible, instead of a thin full-width strip */
+  .road__photo--lead { width: min(1100px, calc(100% - var(--content-x) - var(--gutter))); margin-left: var(--content-x); aspect-ratio: 3 / 2; height: auto; }
 }
 
 /* Days with a photo.
