@@ -235,6 +235,8 @@ ul, ol { padding: 0; list-style: none; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 
 @media (min-width: 760px) { .hero { background-position: 50% 62%; } }
+/* separate vertical photo for phones (heroImageMobile) */
+@media (max-width: 759px) { .hero--m { background-image: var(--hero-img-m) !important; background-position: var(--hero-pos-m) !important; } }
 @media (max-width: 759px) {
   .hero { padding-bottom: 32px; }
   .hero__body { padding-right: calc(var(--word) + var(--gutter)); }
