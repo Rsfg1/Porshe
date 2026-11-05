@@ -4,6 +4,10 @@
   "gallery": [],
   "reviews": [],
   "theme": "poster",
+  "heroImage": "assets/altai/hero-tank.jpg",
+  "heroPosition": "50% 70%",
+  "heroImageMobile": "assets/altai/hero-tank-m.jpg",
+  "heroPositionMobile": "50% 65%",
   "slug": "altai",
   "order": 4,
   "when": "май",
@@ -70,7 +74,12 @@
         "Заселение в «Алтай Вилладж»",
         "Брифинг по безопасности",
         "Ужин в ресторане «Озеро»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/altai/day1-teletskoye.jpg",
+        "alt": "Телецкое озеро",
+        "position": "50% 55%"
+      }
     },
     {
       "day": 2,
@@ -94,7 +103,12 @@
         "Трасса через Курайскую степь",
         "Долина Кызыл-Чин — «Марсово поле»",
         "Обед в Чуйской степи, вечер в глэмпинге"
-      ]
+      ],
+      "photo": {
+        "src": "assets/altai/day3-mars.jpg",
+        "alt": "Цветные горы у дороги",
+        "position": "50% 55%"
+      }
     },
     {
       "day": 4,
@@ -106,7 +120,12 @@
         "Перевал Чике-Таман",
         "Чуйский тракт к реке Урсул, обед у реки",
         "Семинский перевал, «Гранд Шале Алтай»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/altai/day4-katun.jpg",
+        "alt": "Бирюзовая Катунь",
+        "position": "50% 55%"
+      }
     },
     {
       "day": 5,
@@ -147,5 +166,10 @@
     "ice": "#A4C7B9",
     "moss": "#4F6157",
     "ink": "#0F1B18"
+  },
+  "roadImage": {
+    "src": "assets/altai/road-steppe.jpg",
+    "alt": "Степь и снежный хребет на Алтае",
+    "position": "50% 60%"
   }
 }

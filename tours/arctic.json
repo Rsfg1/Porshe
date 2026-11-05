@@ -4,6 +4,8 @@
   "gallery": [],
   "reviews": [],
   "theme": "poster",
+  "heroImage": "assets/arctic/hero-convoy.jpg",
+  "heroPosition": "50% 65%",
   "slug": "arctic",
   "order": 6,
   "when": "июль",
@@ -75,7 +77,12 @@
         "Кладбище кораблей и пляж с «драконьими яйцами»",
         "Rock experience вдоль моря",
         "Тундра, глэмпинг «Китовый берег», морские деликатесы"
-      ]
+      ],
+      "photo": {
+        "src": "assets/arctic/day2-teriberka.jpg",
+        "alt": "Кладбище кораблей в Териберке с высоты",
+        "position": "50% 50%"
+      }
     },
     {
       "day": 3,
@@ -87,7 +94,12 @@
         "Водопады и трекинг к Мустатунтури",
         "Катер в Баренцево море, обед на борту",
         "Спа на берегу моря"
-      ]
+      ],
+      "photo": {
+        "src": "assets/arctic/day3-barents.jpg",
+        "alt": "Маяк в море",
+        "position": "50% 60%"
+      }
     },
     {
       "day": 4,
@@ -98,7 +110,12 @@
         "Возвращение в Мурманск",
         "Памятник «Алёша» и сити-тур",
         "Ужин в «Chop BBQ»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/arctic/day4-tundra.jpg",
+        "alt": "Озеро в тундре и иван-чай",
+        "position": "50% 60%"
+      }
     },
     {
       "day": 5,
@@ -135,5 +152,10 @@
     "ice": "#A3BBD8",
     "moss": "#4E5F77",
     "ink": "#0A1426"
+  },
+  "roadImage": {
+    "src": "assets/arctic/road-ford.jpg",
+    "alt": "Колонна машин проходит брод в тундре",
+    "position": "50% 62%"
   }
 }

@@ -4,6 +4,10 @@
   "gallery": [],
   "reviews": [],
   "theme": "poster",
+  "heroImage": "assets/dagestan/hero-canyon.jpg",
+  "heroPosition": "50% 55%",
+  "heroImageMobile": "assets/dagestan/hero-canyon-m.jpg",
+  "heroPositionMobile": "50% 80%",
   "slug": "dagestan",
   "order": 3,
   "when": "апрель",
@@ -73,7 +77,12 @@
         "Обед в видовом ресторане «Айва»",
         "Бархан Сарыкум и музей флоры и фауны",
         "Ужин в ресторане «Номад»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/dagestan/day2-canyon.jpg",
+        "alt": "Сулакский каньон с высоты",
+        "position": "50% 60%"
+      }
     },
     {
       "day": 3,
@@ -85,7 +94,12 @@
         "Заселение в отель «Кубачи»",
         "Мастер-класс по кубачинскому серебру",
         "Кубачинский комбинат, ужин в отеле"
-      ]
+      ],
+      "photo": {
+        "src": "assets/dagestan/day3-aul.jpg",
+        "alt": "Горный аул на склоне",
+        "position": "50% 55%"
+      }
     },
     {
       "day": 4,
@@ -97,7 +111,12 @@
         "Экраноплан «Лунь» в «Парке Патриот»",
         "Крепость Нарын-Кала, национальные танцы горцев",
         "Вечерний Магал, ужин в «Zafferano»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/dagestan/day4-derbent.jpg",
+        "alt": "Стены крепости Нарын-Кала над Дербентом",
+        "position": "50% 60%"
+      }
     },
     {
       "day": 5,
@@ -138,5 +157,10 @@
     "ice": "#CDB49A",
     "moss": "#6E5A49",
     "ink": "#1B1410"
+  },
+  "roadImage": {
+    "src": "assets/dagestan/road-ekranoplan.jpg",
+    "alt": "Зелёный 911 Safari у экраноплана «Лунь»",
+    "position": "50% 52%"
   }
 }

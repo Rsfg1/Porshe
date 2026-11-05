@@ -4,6 +4,10 @@
   "gallery": [],
   "reviews": [],
   "theme": "poster",
+  "heroImage": "assets/anapa/hero-bmw.jpg",
+  "heroPosition": "50% 72%",
+  "heroImageMobile": "assets/anapa/hero-bmw-m.jpg",
+  "heroPositionMobile": "50% 72%",
   "slug": "anapa",
   "order": 8,
   "when": "октябрь",
@@ -74,7 +78,12 @@
         "Поместье Старого Грека, обед на винодельне",
         "За рулём в Абрау-Дюрсо, дегустация в подвалах Голицына",
         "Ужин в «Вилле Роз», ночь в «Abrau Light»"
-      ]
+      ],
+      "photo": {
+        "src": "assets/anapa/day2-winery.jpg",
+        "alt": "Современная винодельня среди виноградников",
+        "position": "50% 45%"
+      }
     },
     {
       "day": 3,
@@ -86,7 +95,12 @@
         "Гаражная винодельня «Винотеррия»",
         "Обед с видом на виноградники",
         "Долина Лефкадия, ужин с сомелье"
-      ]
+      ],
+      "photo": {
+        "src": "assets/anapa/day3-vineyards.jpg",
+        "alt": "Виноградники в долине у моря",
+        "position": "50% 60%"
+      }
     },
     {
       "day": 4,
@@ -122,5 +136,10 @@
     "ice": "#D2AEB6",
     "moss": "#6E5258",
     "ink": "#1E0F14"
+  },
+  "roadImage": {
+    "src": "assets/anapa/road-bmw.jpg",
+    "alt": "Белое купе BMW 4 серии у виноградника",
+    "position": "50% 75%"
   }
 }
