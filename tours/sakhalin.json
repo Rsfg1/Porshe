@@ -82,7 +82,8 @@
       "photo": {
         "src": "assets/sakhalin/day2-aniva.jpg",
         "alt": "Маяк Анива на скале",
-        "position": "50% 55%"
+        "position": "50% 55%",
+        "small": "assets/sakhalin/day2-aniva-sm.jpg"
       }
     },
     {
@@ -98,7 +99,8 @@
       "photo": {
         "src": "assets/sakhalin/day3-iturup.jpg",
         "alt": "Белые скалы Итурупа с высоты",
-        "position": "50% 55%"
+        "position": "50% 55%",
+        "small": "assets/sakhalin/day3-iturup-sm.jpg"
       }
     },
     {
@@ -131,7 +133,8 @@
       "photo": {
         "src": "assets/sakhalin/day5-waterfalls.jpg",
         "alt": "Водопады в зелёном ущелье",
-        "position": "50% 50%"
+        "position": "50% 50%",
+        "small": "assets/sakhalin/day5-waterfalls-sm.jpg"
       }
     },
     {
@@ -148,7 +151,8 @@
       "photo": {
         "src": "assets/sakhalin/day6-volcano.jpg",
         "alt": "Вулкан над лесом",
-        "position": "50% 45%"
+        "position": "50% 45%",
+        "small": "assets/sakhalin/day6-volcano-sm.jpg"
       }
     },
     {
@@ -196,5 +200,7 @@
     "src": "assets/sakhalin/road-tank.jpg",
     "alt": "Tank 300 на чёрном вулканическом пляже",
     "position": "50% 62%"
-  }
+  },
+  "heroImageMobile": "assets/sakhalin/hero-tanks-m.jpg",
+  "heroPositionMobile": "50% 50%"
 }

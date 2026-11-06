@@ -154,12 +154,15 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
     <p class="eyebrow">Программа</p>
     <h2 class="h2" id="road-h">${tour.days} ${plural(tour.days, 'день', 'дня', 'дней')}, ${tour.km} км</h2>
   </div>
-  ${tour.roadImage ? `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}"${tour.roadImage.position ? ` style="object-position:${esc(tour.roadImage.position)}"` : ''} loading="lazy" decoding="async"></figure>` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
+  ${tour.roadImage ? `${tour.roadImage.positionMobile || tour.roadImage.ratioMobile
+    // phones get their own crop / box shape (a vertical photo needs a taller box to keep both the car and the landmark)
+    ? `<figure class="road__photo road__photo--lead road__photo--m" style="--ar-m:${esc(tour.roadImage.ratioMobile || '4 / 3')}"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}" style="--pos-m:${esc(tour.roadImage.positionMobile || tour.roadImage.position || '62% 60%')};--pos-d:${esc(tour.roadImage.position || '60% 78%')}" loading="lazy" decoding="async"></figure>`
+    : `<figure class="road__photo road__photo--lead"><img src="../${esc(tour.roadImage.src)}" alt="${esc(tour.roadImage.alt)}"${tour.roadImage.position ? ` style="object-position:${esc(tour.roadImage.position)}"` : ''} loading="lazy" decoding="async"></figure>`}` : `<div class="road__photo road__photo--lead ph-box" aria-hidden="true"><p class="ph-label">Здесь будет фото: ${esc(tour.car)} на маршруте</p></div>`}
   <ol class="road">
     ${tour.program.map((d) => `
     <li class="road__day${d.photo ? ' road__day--bg' : ''}">
       <span class="road__node" aria-hidden="true"></span>
-      ${d.photo ? `<figure class="road__bg"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}" style="--pos-m:${esc(d.photo.positionMobile || d.photo.position || '50% 50%')};--pos-d:${esc(d.photo.position || '50% 50%')}" loading="lazy" decoding="async"></figure>` : ''}
+      ${d.photo ? `<figure class="road__bg"><img src="../${esc(d.photo.src)}" alt="${esc(d.photo.alt)}"${d.photo.small ? ` srcset="../${esc(d.photo.small)} 1200w, ../${esc(d.photo.src)} 2560w" sizes="100vw"` : ''} style="--pos-m:${esc(d.photo.positionMobile || d.photo.position || '50% 50%')};--pos-d:${esc(d.photo.position || '50% 50%')}" loading="lazy" decoding="async"></figure>` : ''}
       <div class="wrap">
         <p class="road__num">День ${d.day}${d.driving ? ' <span class="tag">За рулём</span>' : ''}</p>
         <h3 class="road__title">${esc(d.title)}</h3>

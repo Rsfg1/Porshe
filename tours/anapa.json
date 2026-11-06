@@ -82,7 +82,8 @@
       "photo": {
         "src": "assets/anapa/day2-winery.jpg",
         "alt": "Современная винодельня среди виноградников",
-        "position": "50% 45%"
+        "position": "50% 45%",
+        "small": "assets/anapa/day2-winery-sm.jpg"
       }
     },
     {
@@ -99,7 +100,8 @@
       "photo": {
         "src": "assets/anapa/day3-vineyards.jpg",
         "alt": "Виноградники в долине у моря",
-        "position": "50% 60%"
+        "position": "50% 60%",
+        "small": "assets/anapa/day3-vineyards-sm.jpg"
       }
     },
     {

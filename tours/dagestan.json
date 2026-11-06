@@ -81,7 +81,8 @@
       "photo": {
         "src": "assets/dagestan/day2-canyon.jpg",
         "alt": "Сулакский каньон с высоты",
-        "position": "50% 60%"
+        "position": "50% 60%",
+        "small": "assets/dagestan/day2-canyon-sm.jpg"
       }
     },
     {
@@ -98,7 +99,8 @@
       "photo": {
         "src": "assets/dagestan/day3-aul.jpg",
         "alt": "Горный аул на склоне",
-        "position": "50% 55%"
+        "position": "50% 55%",
+        "small": "assets/dagestan/day3-aul-sm.jpg"
       }
     },
     {
@@ -115,7 +117,8 @@
       "photo": {
         "src": "assets/dagestan/day4-derbent.jpg",
         "alt": "Стены крепости Нарын-Кала над Дербентом",
-        "position": "50% 60%"
+        "position": "50% 60%",
+        "small": "assets/dagestan/day4-derbent-sm.jpg"
       }
     },
     {
@@ -161,6 +164,8 @@
   "roadImage": {
     "src": "assets/dagestan/road-ekranoplan.jpg",
     "alt": "Зелёный 911 Safari у экраноплана «Лунь»",
-    "position": "50% 52%"
+    "position": "50% 66%",
+    "ratioMobile": "3 / 4",
+    "positionMobile": "50% 70%"
   }
 }

@@ -81,7 +81,8 @@
       "photo": {
         "src": "assets/arctic/day2-teriberka.jpg",
         "alt": "Кладбище кораблей в Териберке с высоты",
-        "position": "50% 50%"
+        "position": "50% 50%",
+        "small": "assets/arctic/day2-teriberka-sm.jpg"
       }
     },
     {
@@ -98,7 +99,8 @@
       "photo": {
         "src": "assets/arctic/day3-barents.jpg",
         "alt": "Маяк в море",
-        "position": "50% 60%"
+        "position": "50% 60%",
+        "small": "assets/arctic/day3-barents-sm.jpg"
       }
     },
     {
@@ -114,7 +116,8 @@
       "photo": {
         "src": "assets/arctic/day4-tundra.jpg",
         "alt": "Озеро в тундре и иван-чай",
-        "position": "50% 60%"
+        "position": "50% 60%",
+        "small": "assets/arctic/day4-tundra-sm.jpg"
       }
     },
     {
