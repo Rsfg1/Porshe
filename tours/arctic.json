@@ -99,8 +99,9 @@
       "photo": {
         "src": "assets/arctic/day3-barents.jpg",
         "alt": "Маяк в море",
-        "position": "50% 60%",
-        "small": "assets/arctic/day3-barents-sm.jpg"
+        "position": "50% 42%",
+        "small": "assets/arctic/day3-barents-sm.jpg",
+        "positionMobile": "50% 60%"
       }
     },
     {
@@ -116,8 +117,9 @@
       "photo": {
         "src": "assets/arctic/day4-tundra.jpg",
         "alt": "Озеро в тундре и иван-чай",
-        "position": "50% 60%",
-        "small": "assets/arctic/day4-tundra-sm.jpg"
+        "position": "50% 92%",
+        "small": "assets/arctic/day4-tundra-sm.jpg",
+        "positionMobile": "50% 60%"
       }
     },
     {

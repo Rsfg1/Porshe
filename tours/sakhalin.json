@@ -114,9 +114,11 @@
         "Бухта Золотая — только с моря"
       ],
       "photo": {
-        "src": "assets/sakhalin/day4-arch.jpg",
-        "alt": "Каменная арка в океане",
-        "position": "50% 50%"
+        "src": "assets/sakhalin/day4-kekur.jpg",
+        "alt": "Скала-кекур в океане у Итурупа",
+        "position": "50% 55%",
+        "small": "assets/sakhalin/day4-kekur-sm.jpg",
+        "positionMobile": "50% 45%"
       }
     },
     {
