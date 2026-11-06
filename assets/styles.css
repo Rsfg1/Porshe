@@ -738,3 +738,10 @@ ul, ol { padding: 0; list-style: none; }
 .tourswitch__static { display: flex; flex-direction: column; gap: 4px; padding: 10px 14px; border: 1.5px dashed #999; }
 .tourswitch__static span { font: 600 15px/1.2 var(--f-body); }
 .tourswitch__static small { font: 400 12px/1.2 var(--f-mono); color: #666; }
+/* roadImage.positionMobile / ratioMobile: own crop and box shape on phones */
+.road__photo--m { aspect-ratio: var(--ar-m, 4 / 3); }
+.road__photo--m img { object-position: var(--pos-m); }
+@media (min-width: 760px) {
+  .road__photo--m { aspect-ratio: 3 / 2; }
+  .road__photo--m img { object-position: var(--pos-d); }
+}
