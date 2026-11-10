@@ -54,6 +54,7 @@ export function render(tour, cfg, allTours = []) {
 <meta property="og:description" content="${esc(tour.meta.description)}">
 ${tour.heroImage ? `<meta property="og:image" content="../${esc(tour.heroImage)}">` : ''}
 <meta name="theme-color" content="#0D1317">
+${cfg.yandexVerification ? `<meta name="yandex-verification" content="${esc(cfg.yandexVerification)}">` : ''}
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body class="theme-${esc(tour.theme || 'poster')}"${tour.palette ? ` style="${Object.entries(tour.palette).map(([k, v]) => `--${esc(k)}:${esc(v)}`).join(';')}"` : ''}>
