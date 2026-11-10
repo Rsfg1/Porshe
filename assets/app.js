@@ -82,6 +82,7 @@
         name: data.get('name'),
         phone: data.get('phone'),
         page: location.href,
+        consent: true,
         utm: utm
       };
 
