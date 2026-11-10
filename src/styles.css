@@ -682,3 +682,60 @@ ul, ol { padding: 0; list-style: none; }
   .road__photo--m { aspect-ratio: 3 / 2; }
   .road__photo--m img { object-position: var(--pos-d); }
 }
+
+/* ПК: текст крупнее (просьба Ивана 10.11) */
+@media (min-width: 1024px) {
+  body { font-size: 27.5px; }
+  /* ---------- Type ---------- */
+.eyebrow { font-size: 19.5px; }
+  .wordmark { font-size: 22.5px; }
+  /* ---------- Buttons ---------- */
+.btn { font-size: 26px; }
+  .topbar__phone { font-size: 22.5px; }
+  .hero__facts dt { font-size: 17.5px; }
+  .hero__facts dd { font-size: 24px; }
+  .ticket__meta { font-size: 21px; }
+  .ticket__status { font-size: 21px; }
+  .price__not { font-size: 21px; }
+  .road__num { font-size: 21px; }
+  .tag { font-size: 17.5px; }
+  .road__route { font-size: 22.5px; }
+  .road__odo span { font-size: 26px; }
+  .whatif dt { font-size: 26.5px; }
+  .why__note { font-size: 22.5px; }
+  .trust__facts strong { font-size: 31px; }
+  .trust__facts span { font-size: 24px; }
+  .trust__press { font-size: 22.5px; }
+  .quiz__progress { font-size: 19.5px; }
+  .field span { font-size: 19.5px; }
+  .field input { font-size: 27.5px; }
+  .consent { font-size: 21px; }
+  .quiz__error { font-size: 22.5px; }
+  .quiz__next { font-size: 24px; }
+  .quiz__back { font-size: 22.5px; }
+  .faq summary { font-size: 28.5px; }
+  .faq summary::after { font-size: 31px; }
+  /* Footer */
+.footer { font-size: 22.5px; }
+  .theme-glacier .eyebrow { font-size: 20.5px; }
+  .theme-glacier .ticket__meta { font-size: 22.5px; }
+  .theme-glacier .ticket__status { font-size: 22.5px; }
+  .g-lead { font-size: 27.5px; }
+  .g-facts dt { font-size: 19.5px; }
+  .g-facts__dates dd { font-size: 28px; }
+  .ph-label { font-size: 17.5px; }
+  .tourswitch__note { font-size: 19.5px; }
+  .tourswitch__list a span { font-size: 24px; }
+  .tourswitch__list a small { font-size: 19.5px; }
+  .tourswitch__static span { font-size: 24px; }
+  .tourswitch__static small { font-size: 19.5px; }
+  .hero__title { font-size: clamp(40px, 4.6vw, 68px); }
+  .h2 { font-size: clamp(34px, 3.8vw, 52px); }
+  .road__title { font-size: clamp(26px, 2.6vw, 34px); }
+  .hero__lead { font-size: 26px; max-width: 40ch; }
+  .hero__facts .hero__big { font-size: 38px; }
+  .ticket__date { font-size: 34px; }
+  .quiz legend { font-size: 34px; }
+  .g-side .g-title { font-size: clamp(48px, 4.6vw, 72px); }
+  :root { --max: 1240px; }
+}
