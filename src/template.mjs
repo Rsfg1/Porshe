@@ -251,7 +251,7 @@ ${tour.reviews.length ? `
         </div>
         <label class="field"><span>Имя</span><input name="name" autocomplete="given-name" required></label>
         <label class="field"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7" required></label>
-        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="${esc(cfg.privacyUrl)}" target="_blank" rel="noopener">политике конфиденциальности</a></span></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных по <a href="${esc(cfg.privacyUrl)}" target="_blank" rel="noopener">политике обработки персональных данных</a></span></label>
         <p class="quiz__error" role="alert" hidden></p>
         <button class="btn btn--snow" type="submit">Получить программу</button>
       </fieldset>
