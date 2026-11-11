@@ -13,7 +13,7 @@
     "telegram": "",
     "max": ""
   },
-  "leadEndpoint": "",
+  "leadEndpoint": "https://kvint93.online/dt/lead",
   "metrikaId": null,
   "privacyUrl": "https://drive-travel.ru/",
   "soldOut": [

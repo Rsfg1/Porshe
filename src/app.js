@@ -62,6 +62,11 @@
     new URLSearchParams(location.search).forEach(function (v, k) {
       if (/^(utm_|yclid|gclid)/.test(k)) utm[k] = v;
     });
+    // метки из рекламы держим на всю сессию: человек мог перейти на другую страницу перед заявкой
+    try {
+      if (Object.keys(utm).length) sessionStorage.setItem('dt_utm', JSON.stringify(utm));
+      else utm = JSON.parse(sessionStorage.getItem('dt_utm') || '{}') || {};
+    } catch (e) {}
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
