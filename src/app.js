@@ -1,9 +1,14 @@
 (function () {
   var SITE = window.SITE || {};
 
+  // у каждой цели и визита — метка тура, чтобы в одном счётчике смотреть страницы раздельно
   function goal(name, params) {
-    if (SITE.metrikaId && window.ym) window.ym(SITE.metrikaId, 'reachGoal', name, params);
+    if (!SITE.metrikaId || !window.ym) return;
+    var p = { tour: SITE.tour };
+    for (var k in params || {}) p[k] = params[k];
+    window.ym(SITE.metrikaId, 'reachGoal', name, p);
   }
+  if (SITE.metrikaId && window.ym) window.ym(SITE.metrikaId, 'params', { tour: SITE.tour });
 
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-goal]');

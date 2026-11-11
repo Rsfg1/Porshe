@@ -18,13 +18,13 @@ await writeFile('dist/assets/styles.css', css);
 await copyFile('src/app.js', 'dist/assets/app.js');
 
 const tours = Object.values(raw).map(resolve);
-// temporary switcher lists main tours only (A/B variants excluded), in schedule order
+// temporary switcher (only when site.config.json has "tourNav": true) lists main tours only (A/B variants excluded), in schedule order
 const nav = tours.filter((t) => !t.extends).sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
   .map((t) => ({ slug: t.slug, name: t.name, when: t.when || '', sold: (t.departures || []).filter((d) => d.status === 'sold').map((d) => d.label) }));
 const links = [];
 for (const tour of tours) {
   await mkdir(`dist/${tour.slug}`, { recursive: true });
-  await writeFile(`dist/${tour.slug}/index.html`, render(tour, cfg, nav));
+  await writeFile(`dist/${tour.slug}/index.html`, render(tour, cfg, cfg.tourNav ? nav : []));
   links.push(`<li><a href="./${tour.slug}/index.html">${tour.name}</a></li>`);
   console.log(`built dist/${tour.slug}/index.html`);
 }

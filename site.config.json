@@ -15,6 +15,7 @@
   },
   "leadEndpoint": "https://kvint93.online/dt/lead",
   "metrikaId": 114193302,
+  "tourNav": false,
   "privacyUrl": "https://drive-travel.ru/legal_notes",
   "soldOut": [
     {
