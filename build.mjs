@@ -34,12 +34,18 @@ for (const tour of tours) {
 if (cfg.homeRedirect) {
   // own domain: the home page sends visitors to one tour (301 via .htaccess, meta refresh as a fallback)
   await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/${cfg.homeRedirect}/"><title>${cfg.brand}</title><a href="/${cfg.homeRedirect}/">${cfg.brand}</a>`);
-  await writeFile('dist/.htaccess', `RewriteEngine On\nRewriteRule ^$ /${cfg.homeRedirect}/ [R=301,L]\n`);
 } else {
   await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8">${cfg.siteUrl ? '<meta name="robots" content="noindex">' : ''}<title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
 }
 
 if (cfg.siteUrl) {
+  // one address for everyone: http -> https, www -> without www; then the home redirect.
+  // Reg.ru shared hosting: nginx terminates TLS, %{HTTPS} is always off in .htaccess -> use X-Forwarded-Proto
+  const host = new URL(cfg.siteUrl).host;
+  await writeFile('dist/.htaccess', ['RewriteEngine On',
+    'RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [OR]', `RewriteCond %{HTTP_HOST} !^${host.replace(/\./g, '\\.')}$ [NC]`,
+    `RewriteRule ^(.*)$ ${cfg.siteUrl}/$1 [R=301,L]`,
+    ...(cfg.homeRedirect ? [`RewriteRule ^$ /${cfg.homeRedirect}/ [R=301,L]`] : []), ''].join('\n'));
   // only main tours go to the sitemap; A/B variants point their canonical to the main page
   const day = new Date().toISOString().slice(0, 10);
   const urls = tours.filter((t) => !t.extends).map((t) => `<url><loc>${cfg.siteUrl}/${t.slug}/</loc><lastmod>${day}</lastmod></url>`);
