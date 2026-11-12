@@ -3,7 +3,9 @@
 import { readFile, writeFile, mkdir, readdir, copyFile, cp, rm } from 'node:fs/promises';
 import { render } from './src/template.mjs';
 
-const cfg = JSON.parse(await readFile('site.config.json', 'utf8'));
+// SITE_ENV=prod merges site.prod.json over site.config.json (own domain: lead endpoint, canonical, robots, sitemap)
+const env = process.env.SITE_ENV;
+const cfg = { ...JSON.parse(await readFile('site.config.json', 'utf8')), ...(env ? JSON.parse(await readFile(`site.${env}.json`, 'utf8')) : {}) };
 const files = (await readdir('tours')).filter((f) => f.endsWith('.json'));
 const raw = Object.fromEntries(
   await Promise.all(files.map(async (f) => [f.replace(/\.json$/, ''), JSON.parse(await readFile(`tours/${f}`, 'utf8'))]))
@@ -29,4 +31,12 @@ for (const tour of tours) {
   console.log(`built dist/${tour.slug}/index.html`);
 }
 
-await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8"><title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
+await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8">${cfg.siteUrl ? '<meta name="robots" content="noindex">' : ''}<title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
+
+if (cfg.siteUrl) {
+  // only main tours go to the sitemap; A/B variants point their canonical to the main page
+  const day = new Date().toISOString().slice(0, 10);
+  const urls = tours.filter((t) => !t.extends).map((t) => `<url><loc>${cfg.siteUrl}/${t.slug}/</loc><lastmod>${day}</lastmod></url>`);
+  await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
+  await writeFile('dist/robots.txt', `User-agent: *\nDisallow: /lead.php\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid\n\nSitemap: ${cfg.siteUrl}/sitemap.xml\n`);
+}

@@ -52,7 +52,9 @@ export function render(tour, cfg, allTours = []) {
 <meta name="description" content="${esc(tour.meta.description)}">
 <meta property="og:title" content="${esc(tour.meta.title)}">
 <meta property="og:description" content="${esc(tour.meta.description)}">
-${tour.heroImage ? `<meta property="og:image" content="../${esc(tour.heroImage)}">` : ''}
+${cfg.siteUrl ? `<link rel="canonical" href="${esc(cfg.siteUrl)}/${esc(tour.extends || tour.slug)}/">
+<meta property="og:url" content="${esc(cfg.siteUrl)}/${esc(tour.extends || tour.slug)}/">` : ''}
+${tour.heroImage ? `<meta property="og:image" content="${cfg.siteUrl ? esc(cfg.siteUrl) + '/' : '../'}${esc(tour.heroImage)}">` : ''}
 <meta name="theme-color" content="#0D1317">
 ${cfg.yandexVerification ? `<meta name="yandex-verification" content="${esc(cfg.yandexVerification)}">` : ''}
 <link rel="stylesheet" href="../assets/styles.css">
