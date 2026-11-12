@@ -31,7 +31,13 @@ for (const tour of tours) {
   console.log(`built dist/${tour.slug}/index.html`);
 }
 
-await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8">${cfg.siteUrl ? '<meta name="robots" content="noindex">' : ''}<title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
+if (cfg.homeRedirect) {
+  // own domain: the home page sends visitors to one tour (301 via .htaccess, meta refresh as a fallback)
+  await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/${cfg.homeRedirect}/"><title>${cfg.brand}</title><a href="/${cfg.homeRedirect}/">${cfg.brand}</a>`);
+  await writeFile('dist/.htaccess', `RewriteEngine On\nRewriteRule ^$ /${cfg.homeRedirect}/ [R=301,L]\n`);
+} else {
+  await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8">${cfg.siteUrl ? '<meta name="robots" content="noindex">' : ''}<title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
+}
 
 if (cfg.siteUrl) {
   // only main tours go to the sitemap; A/B variants point their canonical to the main page
