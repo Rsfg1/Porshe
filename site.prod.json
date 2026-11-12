@@ -1,5 +1,6 @@
 {
   "leadEndpoint": "/lead.php",
   "siteUrl": "https://drive-expedition.online",
-  "homeRedirect": "zaonezhie"
+  "homeRedirect": "zaonezhie",
+  "yandexVerification": "74ae2aa0dfd83a61"
 }
