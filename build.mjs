@@ -18,6 +18,8 @@ await cp('assets', 'dist/assets', { recursive: true });
 const css = (await readFile('src/fonts.css', 'utf8')) + (await readFile('src/styles.css', 'utf8'));
 await writeFile('dist/assets/styles.css', css);
 await copyFile('src/app.js', 'dist/assets/app.js');
+// favicons (DT monogram, no crest) live in static/ and go to the site root
+for (const f of ['favicon.ico', 'favicon-32.png', 'apple-touch-icon.png', 'icon-192.png']) await copyFile(`static/${f}`, `dist/${f}`);
 
 const tours = Object.values(raw).map(resolve);
 // temporary switcher (only when site.config.json has "tourNav": true) lists main tours only (A/B variants excluded), in schedule order

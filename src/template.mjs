@@ -56,6 +56,10 @@ ${cfg.siteUrl ? `<link rel="canonical" href="${esc(cfg.siteUrl)}/${esc(tour.exte
 <meta property="og:url" content="${esc(cfg.siteUrl)}/${esc(tour.extends || tour.slug)}/">` : ''}
 ${tour.heroImage ? `<meta property="og:image" content="${cfg.siteUrl ? esc(cfg.siteUrl) + '/' : '../'}${esc(tour.heroImage)}">` : ''}
 <meta name="theme-color" content="#0D1317">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 ${cfg.yandexVerification ? `<meta name="yandex-verification" content="${esc(cfg.yandexVerification)}">` : ''}
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
