@@ -263,7 +263,7 @@ ${tour.reviews.length ? `
       </fieldset>
 
       <div class="quiz__done" hidden tabindex="-1">
-        <p class="quiz__done-title">Заявка у ${esc(cfg.manager)}</p>
+        <p class="quiz__done-title">Заявка у ${esc(cfg.managerGen || cfg.manager)}</p>
         <p>Она свяжется с вами и пришлёт программу. Если удобнее сразу поговорить — <a href="${esc(cfg.phoneHref)}">${esc(cfg.phone)}</a>.</p>
       </div>
 
