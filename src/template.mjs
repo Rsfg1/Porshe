@@ -24,9 +24,9 @@ const plural = (n, one, few, many) => {
 const messengerLinks = (cfg, cls) => {
   const m = cfg.messengers;
   return [
+    m.whatsapp && `<a class="${cls}" href="${esc(m.whatsapp)}" data-goal="messenger_wa" target="_blank" rel="noopener">WhatsApp</a>`,
     m.telegram && `<a class="${cls}" href="${esc(m.telegram)}" data-goal="messenger_tg" target="_blank" rel="noopener">Telegram</a>`,
     m.max && `<a class="${cls}" href="${esc(m.max)}" data-goal="messenger_max" target="_blank" rel="noopener">MAX</a>`,
-    m.whatsapp && `<a class="${cls}" href="${esc(m.whatsapp)}" data-goal="messenger_wa" target="_blank" rel="noopener">WhatsApp</a>`,
   ].filter(Boolean).join('');
 };
 
@@ -37,9 +37,9 @@ export function render(tour, cfg, allTours = []) {
   ];
   const perPersonDay = Math.round(tour.price / tour.crewSize / tour.days / 1000) * 1000;
   const leadChannels = [
+    cfg.messengers.whatsapp && 'WhatsApp',
     cfg.messengers.telegram && 'Telegram',
     cfg.messengers.max && 'MAX',
-    cfg.messengers.whatsapp && 'WhatsApp',
     'Звонок',
   ].filter(Boolean);
 
