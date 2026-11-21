@@ -205,7 +205,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
   <div class="wrap trust">
     <h2 class="h2" id="trust-h">Договор с туроператором, а не с частным гидом</h2>
     <ul class="trust__facts">
-      <li><strong>${esc(cfg.registry)}</strong><span>в Едином федеральном реестре туроператоров — <a href="${esc(cfg.registryUrl)}" target="_blank" rel="noopener">проверить</a></span></li>
+      <li><strong>В реестре туроператоров</strong><span>Единый федеральный реестр, ${esc(cfg.registry).split('/').map(x=>`<span style="white-space:nowrap">${x}</span>`).join('/<wbr>')} — <a href="${esc(cfg.registryUrl)}" target="_blank" rel="noopener">проверить</a></span></li>
       <li><strong>С 2019 года</strong><span>возим экипажи по 27 регионам России</span></li>
       <li><strong>РГО</strong><span>маршруты на Байконур и Соловки аккредитованы Русским географическим обществом</span></li>
       <li><strong>РСТ</strong><span>член Российского союза туриндустрии с 2021 года</span></li>
@@ -293,7 +293,7 @@ ${tour.reviews.length ? `
 <footer class="footer">
   <div class="wrap footer__in">
     <p class="wordmark">${esc(cfg.brand)}</p>
-    <p>Туроператор ${esc(cfg.legalName)}, ${esc(cfg.registry)}<br>${esc(cfg.address)}</p>
+    <p>Туроператор ${esc(cfg.legalName)}, реестровый ${esc(cfg.registry)}<br>${esc(cfg.address)}</p>
     <p><a href="${esc(cfg.phoneHref)}" data-goal="phone">${esc(cfg.phone)}</a><br><a href="mailto:${esc(cfg.email)}">${esc(cfg.email)}</a></p>
   </div>
 </footer>
