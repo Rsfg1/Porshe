@@ -18,6 +18,10 @@ await cp('assets', 'dist/assets', { recursive: true });
 const css = (await readFile('src/fonts.css', 'utf8')) + (await readFile('src/styles.css', 'utf8'));
 await writeFile('dist/assets/styles.css', css);
 await copyFile('src/app.js', 'dist/assets/app.js');
+// cache-busting: hosting caches /assets for 45 days, so pages link styles/app with a content hash
+const { createHash } = await import('node:crypto');
+const h = (s) => createHash('sha1').update(s).digest('hex').slice(0, 8);
+cfg.assetVer = { css: h(css), js: h(await readFile('src/app.js', 'utf8')) };
 // favicons (DT monogram, no crest) live in static/ and go to the site root
 for (const f of ['favicon.ico', 'favicon-32.png', 'apple-touch-icon.png', 'icon-192.png']) await copyFile(`static/${f}`, `dist/${f}`);
 

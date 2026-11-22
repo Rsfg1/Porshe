@@ -36,22 +36,6 @@
       "slug": "baikal",
       "label": "Байкал",
       "when": "март"
-    },
-    {
-      "slug": "dagestan",
-      "label": "Дагестан · 911 Safari",
-      "when": "апрель"
-    },
-    {
-      "slug": "altai",
-      "label": "Алтай",
-      "when": "май"
-    },
-    {
-      "goal": "karelia911",
-      "href": "https://drive-travel.ru/karelia911",
-      "label": "Карелия · 911 Safari",
-      "when": "весна"
     }
   ]
 }

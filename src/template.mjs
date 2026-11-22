@@ -75,7 +75,7 @@ ${tour.heroImage ? `<meta property="og:image" content="${cfg.siteUrl ? esc(cfg.s
 <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 ${cfg.yandexVerification ? `<meta name="yandex-verification" content="${esc(cfg.yandexVerification)}">` : ''}
-<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/styles.css${cfg.assetVer ? `?v=${cfg.assetVer.css}` : ''}">
 </head>
 <body class="theme-${esc(tour.theme || 'poster')}"${tour.palette ? ` style="${Object.entries(tour.palette).map(([k, v]) => `--${esc(k)}:${esc(v)}`).join(';')}"` : ''}>
 <a class="skip" href="#lead">К заявке</a>
@@ -332,7 +332,7 @@ ${allTours.length > 1 ? `<nav class="tourswitch" aria-label="Туры (врем�
 
 <script>window.SITE=${JSON.stringify({ leadEndpoint: cfg.leadEndpoint, metrikaId: cfg.metrikaId, tour: tour.slug })};</script>
 ${cfg.metrikaId ? `<script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=${Number(cfg.metrikaId)}","ym");ym(${Number(cfg.metrikaId)},"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><noscript><div><img src="https://mc.yandex.ru/watch/${Number(cfg.metrikaId)}" style="position:absolute;left:-9999px" alt=""></div></noscript>` : ''}
-<script src="../assets/app.js" defer></script>
+<script src="../assets/app.js${cfg.assetVer ? `?v=${cfg.assetVer.js}` : ''}" defer></script>
 </body>
 </html>
 `;
