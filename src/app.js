@@ -130,3 +130,11 @@
     new IntersectionObserver(function (en) { leadIn = en[0].isIntersecting; sync(); }).observe(lead);
   }
 })();
+
+// tour menu: close on outside click / Esc
+(function () {
+  var m = document.querySelector('.tmenu');
+  if (!m) return;
+  document.addEventListener('click', function (e) { if (m.open && !m.contains(e.target)) m.open = false; });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') m.open = false; });
+})();

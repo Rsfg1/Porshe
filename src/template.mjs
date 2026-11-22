@@ -30,6 +30,20 @@ const messengerLinks = (cfg, cls) => {
   ].filter(Boolean).join('');
 };
 
+
+// tour menu on the first screen: current tour + ▾, opens the list of nearest tours (site.config.json "tourMenu")
+const tourMenu = (tour, cfg) => {
+  const items = cfg.tourMenu || [];
+  if (!items.length) return '';
+  const slug = tour.extends || tour.slug;
+  const cur = items.find((i) => i.slug === slug);
+  const href = (i) => i.href || `../${esc(i.slug)}/`;
+  return `<details class="tmenu">
+      <summary data-goal="tourmenu_open"><span>${cur ? `${esc(cur.label)} · ${esc(cur.when)}` : 'Другие туры'}</span><i aria-hidden="true">▾</i></summary>
+      <ul>${items.map((i) => `<li><a href="${href(i)}"${i.slug === slug ? ' aria-current="page"' : ''} data-goal="tourmenu_${esc(i.slug || i.goal || 'ext')}"${i.href && /^https?:/.test(i.href) ? ' target="_blank" rel="noopener"' : ''}><span>${esc(i.label)}</span><small>${esc(i.when)}</small></a></li>`).join('')}</ul>
+    </details>`;
+};
+
 export function render(tour, cfg, allTours = []) {
   const soldItems = [
     ...allTours.flatMap((t) => (t.sold || []).map((label) => `<li><a href="../${esc(t.slug)}/index.html#dates"><span>${esc(t.name)}</span><small>${esc(label)} · продан</small></a></li>`)),
@@ -75,6 +89,7 @@ ${cfg.yandexVerification ? `<meta name="yandex-verification" content="${esc(cfg.
 
 ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
   <div class="g-wrap">
+  ${tourMenu(tour, cfg)}
   <div class="g-frame">
     <div class="g-card">
       <div class="g-stage"><img class="g-photo" src="../${esc(tour.heroImage)}" alt="" decoding="async"><p class="g-word" aria-hidden="true">${esc(tour.name)}</p></div>
@@ -105,6 +120,7 @@ ${tour.theme === 'glacier' ? `<section class="g-hero" aria-labelledby="g-title">
   <div class="hero__shade" aria-hidden="true"></div>
   <p class="hero__word" aria-hidden="true">${esc(tour.name)}</p>
   <div class="wrap hero__body">
+    ${tourMenu(tour, cfg)}
     <p class="eyebrow">${esc(tour.eyebrow)}</p>
     <h1 class="hero__title">${esc(tour.headline)}</h1>
     <p class="hero__lead">${esc(tour.lead)}</p>
