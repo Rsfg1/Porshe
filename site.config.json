@@ -26,5 +26,21 @@
     }
   ],
   "yandexVerification": "",
-  "tourMenu": []
+  "tourMenu": [
+    {
+      "slug": "baikal",
+      "label": "Байкал",
+      "when": "март"
+    },
+    {
+      "slug": "dagestan",
+      "label": "Дагестан",
+      "when": "апрель"
+    },
+    {
+      "slug": "altai",
+      "label": "Алтай",
+      "when": "май"
+    }
+  ]
 }
