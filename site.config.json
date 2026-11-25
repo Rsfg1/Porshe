@@ -26,16 +26,5 @@
     }
   ],
   "yandexVerification": "",
-  "tourMenu": [
-    {
-      "slug": "zaonezhie",
-      "label": "Заонежье",
-      "when": "декабрь"
-    },
-    {
-      "slug": "baikal",
-      "label": "Байкал",
-      "when": "март"
-    }
-  ]
+  "tourMenu": []
 }

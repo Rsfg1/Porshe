@@ -38,7 +38,7 @@ for (const tour of tours) {
 }
 
 if (cfg.homeRedirect) {
-  // own domain: the home page sends visitors to one tour (301 via .htaccess, meta refresh as a fallback)
+  // own domain: the home page sends visitors to one tour (302 via .htaccess, meta refresh as a fallback)
   await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/${cfg.homeRedirect}/"><title>${cfg.brand}</title><a href="/${cfg.homeRedirect}/">${cfg.brand}</a>`);
 } else {
   await writeFile('dist/index.html', `<!doctype html><meta charset="utf-8">${cfg.siteUrl ? '<meta name="robots" content="noindex">' : ''}<title>Посадочные страницы</title><ul>${links.join('')}</ul>`);
@@ -51,10 +51,13 @@ if (cfg.siteUrl) {
   await writeFile('dist/.htaccess', ['RewriteEngine On',
     'RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [OR]', `RewriteCond %{HTTP_HOST} !^${host.replace(/\./g, '\\.')}$ [NC]`,
     `RewriteRule ^(.*)$ ${cfg.siteUrl}/$1 [R=301,L]`,
-    ...(cfg.homeRedirect ? [`RewriteRule ^$ /${cfg.homeRedirect}/ [R=301,L]`] : []), ''].join('\n'));
+    // closed tours (site.prod.json "closedTours": {slug: target}) -> temporary 302 to the open tour, query (UTM) kept
+    ...Object.entries(cfg.closedTours || {}).map(([from, to]) => `RewriteRule ^${from}(/.*)?$ /${to}/ [R=302,L]`),
+    // 302, not 301: browsers cache 301 forever, and the home tour changes with the season
+    ...(cfg.homeRedirect ? [`RewriteRule ^$ /${cfg.homeRedirect}/ [R=302,L]`] : []), ''].join('\n'));
   // only main tours go to the sitemap; A/B variants point their canonical to the main page
   const day = new Date().toISOString().slice(0, 10);
-  const urls = tours.filter((t) => !t.extends).map((t) => `<url><loc>${cfg.siteUrl}/${t.slug}/</loc><lastmod>${day}</lastmod></url>`);
+  const urls = tours.filter((t) => !t.extends && !(cfg.closedTours || {})[t.slug]).map((t) => `<url><loc>${cfg.siteUrl}/${t.slug}/</loc><lastmod>${day}</lastmod></url>`);
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`);
   await writeFile('dist/robots.txt', `User-agent: *\nDisallow: /lead.php\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid\n\nSitemap: ${cfg.siteUrl}/sitemap.xml\n`);
 }

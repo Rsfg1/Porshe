@@ -1,6 +1,10 @@
 {
   "leadEndpoint": "/lead.php",
   "siteUrl": "https://drive-expedition.online",
-  "homeRedirect": "zaonezhie",
-  "yandexVerification": "74ae2aa0dfd83a61"
+  "homeRedirect": "baikal",
+  "yandexVerification": "74ae2aa0dfd83a61",
+  "closedTours": {
+    "zaonezhie": "baikal",
+    "zaonezhie-price": "baikal"
+  }
 }
